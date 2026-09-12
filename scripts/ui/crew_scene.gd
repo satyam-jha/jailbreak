@@ -122,7 +122,7 @@ func _draw() -> void:
 	draw_circle(Vector2(size.x * 0.5, 72), 110.0, Palette.with_alpha(Palette.TEXT, light_alpha))
 	for i in range(_base_positions.size()):
 		var center := _base_positions[i] + Vector2(ACTOR_SIZE.x * 0.5, ACTOR_SIZE.y - 2)
-		draw_ellipse(center, Vector2(32, 7), Palette.with_alpha(Palette.BG_DEEP, 0.45))
+		_draw_actor_shadow(center)
 
 func _draw_alarm_lights() -> void:
 	var pulse := 0.65 + 0.35 * absf(sin(_time * 6.0))
@@ -138,12 +138,12 @@ func _draw_guard_hint() -> void:
 		draw_line(Vector2(x - 12, y + 20), Vector2(x - 25, y + 43), Palette.with_alpha(Palette.INK, 0.72), 7.0)
 		draw_line(Vector2(x + 12, y + 20), Vector2(x + 25, y + 43), Palette.with_alpha(Palette.INK, 0.72), 7.0)
 
-func draw_ellipse(center: Vector2, radius: Vector2, color: Color) -> void:
+func _draw_actor_shadow(center: Vector2) -> void:
 	var points := PackedVector2Array()
 	for i in range(24):
 		var a := TAU * float(i) / 24.0
-		points.append(center + Vector2(cos(a) * radius.x, sin(a) * radius.y))
-	draw_colored_polygon(points, color)
+		points.append(center + Vector2(cos(a) * 32.0, sin(a) * 7.0))
+	draw_colored_polygon(points, Palette.with_alpha(Palette.BG_DEEP, 0.45))
 
 func _action_for(index: int) -> String:
 	if mood == "success": return _success_actions[index % _success_actions.size()]
