@@ -102,13 +102,9 @@ func _offer_card(offer: Dictionary) -> Control:
 		_on_offer_chosen(offer))
 	v.add_child(take)
 
-	var hover := Button.new()
-	hover.flat = true
-	hover.set_anchors_preset(Control.PRESET_FULL_RECT)
-	hover.mouse_filter = Control.MOUSE_FILTER_PASS
-	hover.focus_mode = Control.FOCUS_NONE
-	hover.mouse_entered.connect(func() -> void: Audio.play("hover"))
-	box.add_child(hover)
+	# Hover sound on the card itself — a full-rect overlay Button (even with
+	# MOUSE_FILTER_PASS) sits above TAKE IT and steals the click.
+	box.mouse_entered.connect(func() -> void: Audio.play("hover"))
 	return box
 
 

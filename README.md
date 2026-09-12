@@ -13,10 +13,21 @@ rewritten without touching a line of code.
 
 ---
 
-## Installing Godot
+## How to run
+
+### 1. Install Godot
 
 You need **Godot 4.3 or newer** (developed and tested against 4.7.2). There are
 no other dependencies, no plugins, no asset downloads and no package manager.
+
+**macOS**
+
+```bash
+brew install --cask godot
+godot --version        # e.g. 4.7.2.stable.official
+```
+
+Or download the .dmg from [godotengine.org/download](https://godotengine.org/download).
 
 **Linux / WSL** — one self-contained binary:
 
@@ -30,22 +41,28 @@ ln -sf ~/.local/share/godot/Godot_v4.7.2-stable_linux.x86_64 ~/.local/bin/godot
 godot --version        # 4.7.2.stable.official
 ```
 
-**macOS** — `brew install --cask godot`, or the .dmg from
-[godotengine.org/download](https://godotengine.org/download).
-
 **Windows** — `winget install GodotEngine.GodotEngine`, or the .zip from the
 same page. Substitute `godot.exe` for `godot` in everything below.
 
----
+### 2. First-time import (clone / fresh checkout)
 
-## Running it
+The `.godot/` cache is not in git. Import once so `class_name` scripts register:
+
+```bash
+cd /path/to/jailbreak
+godot --headless --path . --import --quit-after 1
+```
+
+Skip this if you already opened the project in the Godot editor.
+
+### 3. Play
 
 ```bash
 cd /path/to/jailbreak
 godot --path .
 ```
 
-Or open the folder from the Godot project manager and press F5. The whole game
+Or open the folder from the Godot project manager and press **F5**. The whole game
 is one scene (`scenes/main.tscn`); screens are built in code and swapped by
 `scripts/main.gd`.
 
