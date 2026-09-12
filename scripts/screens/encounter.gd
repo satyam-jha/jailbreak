@@ -3,6 +3,8 @@ extends Screen
 ## The UI keeps the crew visible during the decision and gives them a reaction
 ## beat after the outcome before the player continues.
 
+const CrewSceneScript = preload("res://scripts/ui/crew_scene.gd")
+
 enum State { CHOICES, ACTOR, RESULT }
 var _state: int = State.CHOICES
 var _node_data: Dictionary = {}
@@ -44,7 +46,7 @@ func _room_header() -> Control:
 	var box := UIKit.panel(Palette.PANEL, Palette.with_alpha(PrisonGenerator.path_color(path_type), 0.6), 14)
 	var v := UIKit.vbox(8)
 	box.add_child(v)
-	var crew_scene := CrewScene.new(str(room.get("id", "cell_block")), Game.party)
+	var crew_scene: Control = CrewSceneScript.new(str(room.get("id", "cell_block")), Game.party)
 	crew_scene.custom_minimum_size.y = 224
 	v.add_child(crew_scene)
 	var row := UIKit.hbox(10)
@@ -158,9 +160,14 @@ func _render_result() -> void:
 	var outcome: Dictionary = _report.get("outcome", {})
 	var tier_color: Color = Palette.TEAL
 	if check != null: tier_color = (check as CheckResult).tier_color()
-	var reaction := CrewScene.new(str(_node_data.get("room_id", "cell_block")), Game.party); reaction.custom_minimum_size.y = 224; _body.add_child(reaction)
-	var mood := "success" if check == null or (check as CheckResult).tier in [CheckResult.Tier.CRIT_SUCCESS, CheckResult.Tier.SUCCESS] else "failure"
-	reaction.set_mood(mood)
+	var reaction: Control = CrewSceneScript.new(str(_node_data.get("room_id", "cell_block")), Game.party)
+	reaction.custom_minimum_size.y = 224
+	var reaction_mood := "success"
+	if check != null:
+		var result_check := check as CheckResult
+		reaction_mood = "success" if result_check.tier in [CheckResult.Tier.CRIT_SUCCESS, CheckResult.Tier.SUCCESS] else "failure"
+	reaction.set_mood(reaction_mood)
+	_body.add_child(reaction)
 	if check != null: _body.add_child(CheckPanel.new(check as CheckResult))
 	var story := UIKit.panel(Palette.PANEL, Palette.with_alpha(tier_color, 0.55), 14)
 	var sv := UIKit.vbox(8); story.add_child(sv)
