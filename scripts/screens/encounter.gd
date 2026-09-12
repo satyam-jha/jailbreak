@@ -1,7 +1,5 @@
 extends Screen
-## A room, an event, a choice, and the consequences.
-## The UI keeps the crew visible during the decision and gives them a reaction
-## beat after the outcome before the player continues.
+## A room, an event, a choice, and persistent consequences.
 
 const CrewSceneScript = preload("res://scripts/ui/crew_scene.gd")
 
@@ -23,6 +21,7 @@ func build() -> void:
 	var node_id := str(payload.get("node_id", ""))
 	if node_id.is_empty(): go("map"); return
 	_entry_changes = Game.enter_node(node_id)
+	Strategy.enter_room(str(Game.node(node_id).get("room_id", "")))
 	_entry_catches = Game.fire_catches("on_room_enter")
 	_node_data = Game.node(node_id)
 	_event = Game.current_event
@@ -57,6 +56,14 @@ func _room_header() -> Control:
 	row.add_child(UIKit.spacer())
 	row.add_child(UIKit.label("Day %d" % Game.day, 14, Palette.TEXT_FAINT))
 	v.add_child(row)
+	var strategy := Strategy.summary()
+	var state_row := UIKit.hbox(8)
+	state_row.add_child(UIKit.chip("SUSPICION %d/5" % int(strategy.get("suspicion", 0)), Palette.DANGER if int(strategy.get("suspicion", 0)) >= 3 else Palette.TEXT_FAINT))
+	state_row.add_child(UIKit.chip("NOISE %d/5" % int(strategy.get("noise", 0)), Palette.WARN if int(strategy.get("noise", 0)) >= 3 else Palette.TEXT_FAINT))
+	state_row.add_child(UIKit.chip("INTEL %d/5" % int(strategy.get("intel", 0)), Palette.TEAL if int(strategy.get("intel", 0)) >= 2 else Palette.TEXT_FAINT))
+	if int(strategy.get("guard_attention", 0)) > 0: state_row.add_child(UIKit.chip("PATROLS %d/5" % int(strategy.get("guard_attention", 0)), Palette.DANGER))
+	if int(strategy.get("favors", 0)) > 0: state_row.add_child(UIKit.chip("FAVORS %d" % int(strategy.get("favors", 0)), Palette.ACCENT))
+	v.add_child(state_row)
 	return box
 
 func _clear_body() -> void:
@@ -72,6 +79,13 @@ func _render() -> void:
 func _render_choices() -> void:
 	if not _entry_changes.is_empty(): _body.add_child(changes_panel(_entry_changes, "ON THE WAY IN"))
 	for report in _entry_catches: _body.add_child(_catch_panel(report))
+	var warning := Strategy.warning_text()
+	if not warning.is_empty():
+		var warn_box := UIKit.panel(Palette.PANEL_DARK, Palette.DANGER, 12)
+		var wv := UIKit.vbox(4); warn_box.add_child(wv)
+		wv.add_child(UIKit.label("CONSEQUENCE", 13, Palette.DANGER))
+		wv.add_child(UIKit.paragraph(warning, 15, Palette.TEXT))
+		_body.add_child(warn_box)
 	if _event.is_empty():
 		_body.add_child(UIKit.paragraph("Nothing happens here. Suspicious, but you will take it.", 18, Palette.TEXT_DIM))
 		var onward := UIKit.primary_button("MOVE ON", 18); onward.pressed.connect(_finish_room); _body.add_child(onward); return
@@ -94,7 +108,8 @@ func _render_choices() -> void:
 
 func _choice_card(choice: Dictionary) -> Control:
 	var availability := EncounterEngine.choice_availability(choice, Game.party, Game.money)
-	var available := bool(availability["available"])
+	var strategy_gate := Strategy.choice_modifier(choice)
+	var available := bool(availability["available"]) and not bool(strategy_gate["blocked"])
 	var box := UIKit.panel(Palette.PANEL_HI if available else Palette.PANEL_DARK, Palette.BORDER if available else Palette.darken(Palette.BORDER, 0.4), 12)
 	var v := UIKit.vbox(5); box.add_child(v)
 	var head := UIKit.hbox(10)
@@ -106,11 +121,12 @@ func _choice_card(choice: Dictionary) -> Control:
 	v.add_child(head)
 	var notes := UIKit.hbox(8)
 	if choice.has("hint"): notes.add_child(UIKit.label(str(choice["hint"]), 13, Palette.TEXT_FAINT))
-	if int(choice.get("cost_money", 0)) > 0: notes.add_child(UIKit.chip("Costs $%d" % int(choice["cost_money"]), Palette.ACCENT))
+	if int(choice.get("cost_money", 0)) > 0: notes.add_child(UIKit.chip("Costs $%d" % int(choice.get("cost_money", 0)), Palette.ACCENT))
 	var difficulty := int(choice.get("difficulty", 0)) + int(_node_data.get("extra_difficulty", 0))
 	if difficulty > 0: notes.add_child(UIKit.chip("Difficult", Palette.WARN))
 	elif difficulty < 0: notes.add_child(UIKit.chip("Favourable", Palette.SUCCESS))
-	if not available: notes.add_child(UIKit.label(str(availability["reason"]), 13, Palette.DANGER))
+	if not availability["available"]: notes.add_child(UIKit.label(str(availability["reason"]), 13, Palette.DANGER))
+	elif bool(strategy_gate["blocked"]): notes.add_child(UIKit.label(str(strategy_gate["reason"]), 13, Palette.DANGER))
 	notes.add_child(UIKit.spacer()); v.add_child(notes)
 	if available:
 		var btn := Button.new(); btn.flat = true; btn.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -152,7 +168,10 @@ func _render_actor_picker() -> void:
 
 func _resolve(actor: Prisoner) -> void:
 	if actor == null and not bool(_selected_choice.get("auto", false)): actor = EncounterEngine.best_actor(_selected_choice, Game.party)
-	_report = Game.resolve_choice(_selected_choice, actor); _state = State.RESULT; _render()
+	_report = Game.resolve_choice(_selected_choice, actor)
+	Strategy.observe_outcome(_report.get("outcome", {}), _report.get("result", null), actor)
+	_state = State.RESULT
+	_render()
 
 func _render_result() -> void:
 	var check: Variant = _report.get("result")
@@ -169,6 +188,14 @@ func _render_result() -> void:
 	reaction.set_mood(reaction_mood)
 	_body.add_child(reaction)
 	if check != null: _body.add_child(CheckPanel.new(check as CheckResult))
+	var strategy_after := Strategy.summary()
+	var consequence_box := UIKit.panel(Palette.PANEL_DARK, Palette.with_alpha(Palette.ACCENT, 0.45), 12)
+	var cv := UIKit.vbox(4); consequence_box.add_child(cv)
+	cv.add_child(UIKit.label("WHAT THIS CHANGED", 13, Palette.ACCENT))
+	var warning := Strategy.warning_text()
+	if not warning.is_empty(): cv.add_child(UIKit.label(warning, 13, Palette.DANGER))
+	cv.add_child(UIKit.label("Suspicion %d  •  Noise %d  •  Intel %d  •  Patrols %d  •  Favors %d" % [int(strategy_after.get("suspicion", 0)), int(strategy_after.get("noise", 0)), int(strategy_after.get("intel", 0)), int(strategy_after.get("guard_attention", 0)), int(strategy_after.get("favors", 0))], Palette.TEXT_FAINT))
+	_body.add_child(consequence_box)
 	var story := UIKit.panel(Palette.PANEL, Palette.with_alpha(tier_color, 0.55), 14)
 	var sv := UIKit.vbox(8); story.add_child(sv)
 	var head := UIKit.hbox(12)
@@ -203,6 +230,7 @@ func _catch_panel(report: Dictionary) -> Control:
 
 func _walk_away() -> void:
 	Audio.play("failure"); Game.add_heat(Game.scale_generated_heat(5)); Game.log_line("The crew stood in the room doing nothing, which is not free.")
+	Strategy.observe_outcome({"heat": 5, "note": "stood around and drew attention"}, null, null)
 	if Game.check_run_over().is_empty(): _finish_room()
 	else: go("summary")
 
