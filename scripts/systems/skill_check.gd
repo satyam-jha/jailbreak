@@ -18,28 +18,22 @@ static func prepare(actor: Prisoner, stat_name: String, contexts: Array, difficu
 	res.actor_name = actor.display_name
 	res.stat_name = stat_name
 	res.stat_value = actor.effective_stat(stat_name)
-
 	var chance := float(BASE_CHANCE)
 	res.add_modifier("Base chance", BASE_CHANCE)
-
 	var stat_part := (res.stat_value - 5) * PER_POINT
 	chance += stat_part
 	res.add_modifier("%s %d" % [stat_name.capitalize(), res.stat_value], stat_part)
-
 	if difficulty != 0:
 		var diff_part := -difficulty * PER_DIFFICULTY
 		chance += diff_part
 		res.add_modifier("Task difficulty", diff_part)
-
 	if stat_name != "luck":
 		var luck_part := int(round((actor.effective_stat("luck") - 5) * LUCK_WEIGHT))
 		chance += luck_part
 		res.add_modifier("Luck", luck_part)
-
 	var crit_success_bonus := int(situation.get("crit_success_bonus", 0))
 	var crit_fail_bonus := int(situation.get("crit_fail_bonus", 0))
 	var save_chance := float(situation.get("save_chance", 0.0))
-
 	var trait_mods := collect_trait_modifiers(actor, contexts, int(situation.get("heat", 0)))
 	for m in trait_mods.get("bonuses", []):
 		chance += int(m["value"])
@@ -47,25 +41,17 @@ static func prepare(actor: Prisoner, stat_name: String, contexts: Array, difficu
 	crit_success_bonus += int(trait_mods.get("crit_success_bonus", 0))
 	crit_fail_bonus += int(trait_mods.get("crit_fail_bonus", 0))
 	save_chance += float(trait_mods.get("save_chance", 0.0))
-
 	for m in situation.get("bonuses", []):
 		chance += int(m["value"])
 		res.add_modifier(str(m["label"]), int(m["value"]))
-
-	# Strategy 2.0: consequences from earlier rooms are part of the actual roll.
-	# This is deliberately after normal bonuses so the player can see the
-	# persistent pressure in the CheckPanel.
+	# Append only the new Strategy bonuses, so existing GameState bonuses are not doubled.
+	var bonus_count_before := (situation.get("bonuses", []) as Array).size()
 	Strategy.modify_situation(situation, contexts)
-	for m in Strategy.summary().get("_unused", []):
-		pass
-	# modify_situation appends to the same bonuses array.
-	var strategy_bonus_start := 0
-	var all_bonuses: Array = situation.get("bonuses", [])
-	for m in all_bonuses:
-		if not res.modifiers_have(str(m.get("label", ""))):
-			chance += int(m.get("value", 0))
-			res.add_modifier(str(m.get("label", "")), int(m.get("value", 0)))
-
+	var bonuses: Array = situation.get("bonuses", [])
+	for i in range(bonus_count_before, bonuses.size()):
+		var m: Dictionary = bonuses[i]
+		chance += int(m.get("value", 0))
+		res.add_modifier(str(m.get("label", "Strategy")), int(m.get("value", 0)))
 	res.final_chance = clampi(int(round(chance)), MIN_CHANCE, MAX_CHANCE)
 	res.crit_success_at = clampi(int(round(res.final_chance * CRIT_SUCCESS_FRACTION)) + crit_success_bonus, 0, res.final_chance)
 	var fail_band := 100 - res.final_chance
@@ -77,14 +63,10 @@ static func prepare(actor: Prisoner, stat_name: String, contexts: Array, difficu
 static func resolve(actor: Prisoner, stat_name: String, contexts: Array, difficulty: int, situation: Dictionary) -> CheckResult:
 	var res := prepare(actor, stat_name, contexts, difficulty, situation)
 	res.roll = Rng.roll_int(1, 100)
-	if res.roll <= res.crit_success_at:
-		res.tier = CheckResult.Tier.CRIT_SUCCESS
-	elif res.roll <= res.final_chance:
-		res.tier = CheckResult.Tier.SUCCESS
-	elif res.roll >= res.crit_failure_at:
-		res.tier = CheckResult.Tier.CRIT_FAILURE
-	else:
-		res.tier = CheckResult.Tier.FAILURE
+	if res.roll <= res.crit_success_at: res.tier = CheckResult.Tier.CRIT_SUCCESS
+	elif res.roll <= res.final_chance: res.tier = CheckResult.Tier.SUCCESS
+	elif res.roll >= res.crit_failure_at: res.tier = CheckResult.Tier.CRIT_FAILURE
+	else: res.tier = CheckResult.Tier.FAILURE
 	if res.tier == CheckResult.Tier.FAILURE and res.save_chance > 0.0 and Rng.chance(res.save_chance):
 		res.tier = CheckResult.Tier.SUCCESS
 		res.was_saved = true
