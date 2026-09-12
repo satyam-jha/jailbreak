@@ -16,6 +16,7 @@ config/icon="res://icon.svg"
 Content="*res://scripts/autoload/content.gd"
 Rng="*res://scripts/autoload/rng_service.gd"
 Game="*res://scripts/autoload/game_state.gd"
+Strategy="*res://scripts/autoload/strategy_state.gd"
 Audio="*res://scripts/autoload/audio_manager.gd"
 SaveSystem="*res://scripts/autoload/save_system.gd"
 
