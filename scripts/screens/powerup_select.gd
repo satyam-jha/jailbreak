@@ -3,6 +3,8 @@ extends Screen
 ## Presentation is now a stash scene: the crew discovers contraband on a table,
 ## then inspects the chosen item before taking it.
 
+const CrewSceneScript = preload("res://scripts/ui/crew_scene.gd")
+
 enum State { OFFER, TARGET, TAKEN }
 var _state: int = State.OFFER
 var _offers: Array = []
@@ -38,7 +40,7 @@ func _stash_stage() -> Control:
 	var panel := UIKit.panel(Palette.PANEL_DARK, Palette.BORDER, 16)
 	panel.custom_minimum_size.y = 180
 	var v := UIKit.vbox(6); panel.add_child(v)
-	var crew := CrewScene.new("maintenance", Game.party)
+	var crew: Control = CrewSceneScript.new("maintenance", Game.party)
 	crew.custom_minimum_size.y = 135
 	v.add_child(crew)
 	v.add_child(UIKit.label("A dented table. Five prisoners. Several objects nobody can explain.", 13, Palette.TEXT_FAINT, HORIZONTAL_ALIGNMENT_CENTER))
@@ -116,9 +118,8 @@ func _take(target: Prisoner) -> void:
 
 func _render_taken() -> void:
 	var def: Dictionary = _chosen.get("def", {})
-	var crew := CrewScene.new("maintenance", Game.party)
+	var crew: Control = CrewSceneScript.new("maintenance", Game.party)
 	crew.custom_minimum_size.y = 180
-	crew.set_mood("success")
 	_body.add_child(crew)
 	var box := UIKit.panel(Palette.PANEL, Palette.ACCENT, 14)
 	var v := UIKit.vbox(8); box.add_child(v)
