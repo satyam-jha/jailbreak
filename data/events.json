@@ -1,0 +1,3241 @@
+{
+  "_readme": "Encounters. Copy any block to add one. 'rooms' lists room ids from rooms.json ('any' = anywhere). 'min_heat'/'max_heat' gate an event to a Heat range. Each choice names a 'stat', optional 'tags' (used by trait contexts), and a 'difficulty' (+ = harder). Outcome fields: text, heat, money, damage, heal, status, note. 'note' lines are collected into the run summary's Notable Events.",
+  "events": [
+    {
+      "id": "guard_stare",
+      "title": "The Guard Is Looking Directly At You",
+      "rooms": [
+        "cell_block",
+        "cafeteria",
+        "yard",
+        "laundry"
+      ],
+      "weight": 12,
+      "description": "Officer Pell has stopped mid-sentence. He is looking at your group. He is doing the slow head-count that guards do when they already know the answer.",
+      "choices": [
+        {
+          "text": "Slip behind the laundry cart.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Not only does Pell not see you, he later reports the corridor as 'unusually empty' and gets two days off for stress.",
+            "heat": -8,
+            "note": "vanished behind a laundry cart so well a guard was given leave"
+          },
+          "success": {
+            "text": "You fold behind the cart. Pell walks past close enough that you could have taken his keys. You did not. Probably correct.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "The cart rolls. You do not. Pell writes something on a clipboard, which is never good.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "The cart rolls into Pell. Pell rolls into a vending machine. The vending machine wins and everyone agrees it was your fault.",
+            "heat": 16,
+            "damage": 1,
+            "status": "scared",
+            "note": "started a chain reaction involving a guard and a vending machine"
+          }
+        },
+        {
+          "text": "Walk over and start a conversation.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You ask about his boat. He does not own a boat but is deeply moved that you thought he might. You are now friends and he is now crying.",
+            "heat": -9,
+            "money": 20,
+            "note": "made a guard cry about a boat he does not own"
+          },
+          "success": {
+            "text": "Twelve minutes of small talk about the vending machine. He forgets what he was counting.",
+            "heat": -4
+          },
+          "failure": {
+            "text": "He asks why you're being friendly. You do not have an answer prepared. The silence goes on for a very long time.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "You call him by the wrong name. It is the name of the officer he is currently in a dispute with. He takes it personally and takes it out on the wing.",
+            "heat": 17,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Send in the biggest person you have.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "No violence occurs. None is required. Pell reconsiders his entire career in under a second and walks away whistling.",
+            "heat": -6,
+            "note": "ended a confrontation purely through standing"
+          },
+          "success": {
+            "text": "A wordless staring contest. Pell decides the head-count can wait until after lunch.",
+            "heat": 2
+          },
+          "failure": {
+            "text": "Pell is not intimidated. Your guy is. This is somehow worse than being caught.",
+            "heat": 11,
+            "status": "scared"
+          },
+          "crit_failure": {
+            "text": "Your guy panics and shakes Pell's hand very firmly for nine seconds. Pell calls this in. There is a code for it.",
+            "heat": 20,
+            "damage": 1,
+            "note": "panic-shook a guard's hand for nine full seconds"
+          }
+        },
+        {
+          "text": "Do absolutely nothing and hope.",
+          "stat": "luck",
+          "tags": [
+            "luck"
+          ],
+          "difficulty": -1,
+          "hint": "Pure luck. No skill involved. No dignity either.",
+          "crit_success": {
+            "text": "The lights flicker. When they come back on, Pell has forgotten all of you exist. Nobody will ever explain this.",
+            "heat": -12,
+            "note": "was forgotten by a guard during a power flicker"
+          },
+          "success": {
+            "text": "He looks at you for a long moment, decides you're not worth the paperwork, and leaves.",
+            "heat": -1
+          },
+          "failure": {
+            "text": "He was, in fact, worth the paperwork. Yours.",
+            "heat": 10
+          },
+          "crit_failure": {
+            "text": "Standing perfectly still for ninety seconds turns out to be the single most suspicious thing a human can do.",
+            "heat": 18,
+            "status": "suspicious"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cafeteria_riot_starter",
+      "title": "Something Is Wrong With The Gravy",
+      "rooms": [
+        "cafeteria"
+      ],
+      "weight": 10,
+      "description": "The gravy is moving. Not steaming. Moving. Four hundred men have noticed at the same time, and the room has gone quiet in the way rooms do about eleven seconds before they stop being quiet.",
+      "choices": [
+        {
+          "text": "Whip the room into a full riot as cover.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You give a four-sentence speech about dignity. The cafeteria erupts. In the confusion you walk out of an unlocked door that was never supposed to be unlocked.",
+            "heat": 14,
+            "money": 40,
+            "note": "started a riot with a speech about gravy"
+          },
+          "success": {
+            "text": "It kicks off beautifully. Everyone is busy. So are you, in a different direction.",
+            "heat": 12,
+            "money": 20
+          },
+          "failure": {
+            "text": "Nobody riots. Everyone just stares at you, standing on a table, holding a ladle.",
+            "heat": 12,
+            "status": "suspicious"
+          },
+          "crit_failure": {
+            "text": "A riot starts. It starts at you. You are briefly the most popular man in the room and then the least.",
+            "heat": 18,
+            "damage": 2,
+            "note": "started a riot and immediately lost it"
+          }
+        },
+        {
+          "text": "Quietly take everything not nailed down.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You leave with cutlery, a tray, two rolls, and — inexplicably — a fire extinguisher nobody saw you take.",
+            "heat": -2,
+            "money": 45,
+            "note": "stole a fire extinguisher in front of four hundred people"
+          },
+          "success": {
+            "text": "Three forks and a bread roll. In here, that is a war chest.",
+            "money": 22
+          },
+          "failure": {
+            "text": "You are caught with a fork. Only a fork. It is somehow more embarrassing than being caught with a weapon.",
+            "heat": 7
+          },
+          "crit_failure": {
+            "text": "You reach for the tray. The tray is attached to the gravy. The gravy is attached to something with opinions.",
+            "heat": 12,
+            "damage": 1,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Analyse the gravy. Scientifically.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "medical"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "It is a chemical reaction with the cleaning supplies. You bottle some. This will be useful later in a way you cannot yet imagine.",
+            "heat": -4,
+            "money": 30,
+            "note": "bottled weaponised gravy for later"
+          },
+          "success": {
+            "text": "You identify the problem and quietly warn your team off the gravy. Small victories.",
+            "heat": -2,
+            "heal": 2
+          },
+          "failure": {
+            "text": "You taste it to be sure. This was not the rigorous approach you described out loud.",
+            "damage": 1,
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "You taste it twice.",
+            "damage": 2,
+            "status": "exhausted",
+            "heat": 5,
+            "note": "tasted the moving gravy. Twice."
+          }
+        },
+        {
+          "text": "Eat it.",
+          "requires": {
+            "trait": "eats_anything"
+          },
+          "stat": "luck",
+          "tags": [
+            "chaos"
+          ],
+          "difficulty": -2,
+          "hint": "Only available to someone who eats anything.",
+          "crit_success": {
+            "text": "He eats the entire tray. The room falls silent. Two guards applaud. Your group's reputation in this facility is now permanent and load-bearing.",
+            "heat": -15,
+            "money": 50,
+            "note": "ate the entire moving gravy tray to a standing ovation"
+          },
+          "success": {
+            "text": "He eats it. He is fine. Everybody else has questions that will never be answered.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "He eats it. He is not fine. He is, however, still eating it.",
+            "damage": 2
+          },
+          "crit_failure": {
+            "text": "He eats it, the tray, and part of the serving counter. Medical is called. Medical declines.",
+            "damage": 3,
+            "status": "exhausted",
+            "heat": 8,
+            "note": "ate part of a serving counter"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yard_fence_distraction",
+      "title": "A Man Is Selling Watches In The Yard",
+      "rooms": [
+        "yard"
+      ],
+      "weight": 10,
+      "description": "There is a man by the fence with eleven watches on one arm. He is not supposed to have eleven watches. Neither is he supposed to be by the fence. Two guards are walking toward him and away from you.",
+      "choices": [
+        {
+          "text": "Use the distraction. Move now, move fast.",
+          "stat": "speed",
+          "tags": [
+            "speed"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You cross the yard so cleanly that the watch man later claims he did it on purpose and charges you for the favour.",
+            "heat": -6,
+            "money": -10,
+            "note": "crossed the entire yard under cover of a watch salesman"
+          },
+          "success": {
+            "text": "Forty metres of open ground, crossed while everyone looked at a man's arm.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "You misjudge it. A guard turns back early and sees a group of men jogging for no stated reason.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "You sprint directly into the watch transaction. You are now part of the watch transaction. You now own a watch.",
+            "heat": 15,
+            "money": -25,
+            "note": "was forcibly sold a watch mid-escape"
+          }
+        },
+        {
+          "text": "Buy a watch. Ask what else he has.",
+          "cost_money": 25,
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He has a guard's duty roster, a key that opens something, and a strong opinion about the warden's marriage. You take all three.",
+            "money": 10,
+            "heat": -8,
+            "note": "bought a duty roster off a man wearing eleven watches"
+          },
+          "success": {
+            "text": "The watch is broken but the information is not. Patrol changes at the half hour.",
+            "heat": -4
+          },
+          "failure": {
+            "text": "The watch is broken and so is the information. It is a very confident sort of wrong.",
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "He takes your money and then loudly explains to the approaching guards that you tried to buy contraband. He keeps the money. He keeps the watches.",
+            "heat": 14,
+            "status": "angry"
+          }
+        },
+        {
+          "text": "Join in. Sell something of your own.",
+          "stat": "luck",
+          "tags": [
+            "chaos",
+            "social"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You sell a guard his own pen back to him. He thanks you. You are now, briefly, the richest men in the facility.",
+            "money": 70,
+            "heat": 4,
+            "note": "sold a guard his own pen"
+          },
+          "success": {
+            "text": "Brisk trade. Nobody asks where any of it came from, which is the entire economy in here.",
+            "money": 35,
+            "heat": 3
+          },
+          "failure": {
+            "text": "You have no stock, no pitch, and no plan. You have attracted a small disappointed crowd.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "You accidentally undercut the watch man. The watch man has friends. The friends have opinions about market share.",
+            "heat": 10,
+            "damage": 2,
+            "status": "angry"
+          }
+        }
+      ]
+    },
+    {
+      "id": "laundry_tunnel_vent",
+      "title": "The Vent Behind The Dryers",
+      "rooms": [
+        "laundry",
+        "maintenance"
+      ],
+      "weight": 11,
+      "description": "Dryer number six has not worked since March. Behind it is a vent that nobody has looked at since considerably before March. It is exactly one person wide and goes somewhere.",
+      "choices": [
+        {
+          "text": "Send someone in. Right now.",
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "tunnel"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "It comes out in the staff corridor behind the security hub. This is a genuinely enormous discovery and your guy is insufferable about it for the rest of the run.",
+            "heat": -10,
+            "note": "found a vent leading behind the security hub"
+          },
+          "success": {
+            "text": "It goes two rooms east. Useful. Cramped. Slightly warm in a way nobody wants explained.",
+            "heat": -4
+          },
+          "failure": {
+            "text": "It goes nowhere and he gets wedged. Extracting him involves noise, leverage, and a great deal of negotiation.",
+            "heat": 9,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "It goes directly into the guard break room. He emerges in the middle of a birthday. There is cake. There are witnesses.",
+            "heat": 22,
+            "status": "scared",
+            "note": "emerged from a vent into a guard's birthday party"
+          }
+        },
+        {
+          "text": "Move the dryer first. Properly.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "The dryer moves silently. It should not have moved silently. Nobody questions a gift.",
+            "heat": -5
+          },
+          "success": {
+            "text": "It takes three of you and a great deal of grunting, but the vent is clear.",
+            "heat": 2
+          },
+          "failure": {
+            "text": "The dryer makes a sound like a church bell falling down some stairs.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "The dryer comes away from the wall entirely, taking a section of pipe with it. The laundry is now a water feature.",
+            "heat": 18,
+            "damage": 1,
+            "note": "converted the laundry room into a water feature"
+          }
+        },
+        {
+          "text": "Map the ductwork before touching anything.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You draw the entire ventilation system from memory of a maintenance schematic you glanced at. Two shortcuts identified.",
+            "heat": -7,
+            "money": 15,
+            "note": "reconstructed the ventilation map from a single glance"
+          },
+          "success": {
+            "text": "You establish where it goes and, more importantly, where it doesn't.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "The schematic is from 1974. The building has had opinions since 1974.",
+            "heat": 4
+          },
+          "crit_failure": {
+            "text": "You confidently identify the vent as leading outside. It leads into the warden's office. You find this out the loud way.",
+            "heat": 20,
+            "status": "suspicious"
+          }
+        }
+      ]
+    },
+    {
+      "id": "workshop_angle_grinder",
+      "title": "Somebody Left The Angle Grinder Out",
+      "rooms": [
+        "workshop"
+      ],
+      "weight": 11,
+      "description": "It is plugged in. It is charged. It is sitting on the bench like an invitation. The workshop supervisor is asleep in a chair with a magazine on his face.",
+      "choices": [
+        {
+          "text": "Cut through the window bars. Now, while he sleeps.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Three bars, forty seconds, and the supervisor sleeps through all of it. He will later insist the bars were always like that.",
+            "heat": 3,
+            "note": "cut three window bars beside a sleeping supervisor"
+          },
+          "success": {
+            "text": "One bar down. It is enough. Barely. The sparks were a concern.",
+            "heat": 7
+          },
+          "failure": {
+            "text": "The grinder catches. The noise is architectural. The supervisor's magazine falls off.",
+            "heat": 16,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "You cut through the bar, the frame, and a conduit carrying something important. The lights go red. Somewhere, a door decides to lock forever.",
+            "heat": 24,
+            "damage": 2,
+            "status": "scared",
+            "note": "cut through a conduit and turned the lights red"
+          }
+        },
+        {
+          "text": "Steal it and hide it for later.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You take the grinder, two blades, and the extension cord. You also take the magazine, purely out of spite.",
+            "money": 40,
+            "heat": -3,
+            "note": "stole an angle grinder and a sleeping man's magazine"
+          },
+          "success": {
+            "text": "The grinder is now inside a mattress two rooms away. Excellent.",
+            "money": 25
+          },
+          "failure": {
+            "text": "The cord catches. The tool inventory is checked hourly. It is now fifty-eight minutes to the hour.",
+            "heat": 10
+          },
+          "crit_failure": {
+            "text": "You unplug it. Unplugging it stops the fan. Stopping the fan wakes the supervisor, who has slept through fires but not silence.",
+            "heat": 17,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Build something useful out of scrap instead.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You produce a set of lockpicks, a dummy key card, and a thing you refuse to describe but which everyone agrees looks effective.",
+            "money": 35,
+            "heat": -6,
+            "note": "manufactured lockpicks and a thing nobody would describe"
+          },
+          "success": {
+            "text": "Two functioning lockpicks and a length of wire. Honest work.",
+            "money": 18,
+            "heat": -2
+          },
+          "failure": {
+            "text": "You produce something. Nobody, including you, can identify it.",
+            "heat": 4
+          },
+          "crit_failure": {
+            "text": "You produce something that immediately catches fire. The supervisor wakes to a small tidy blaze and a room full of innocent expressions.",
+            "heat": 18,
+            "damage": 1,
+            "note": "built a small tidy fire out of workshop scrap"
+          }
+        }
+      ]
+    },
+    {
+      "id": "medical_supply_run",
+      "title": "The Medicine Cabinet Is Unlocked",
+      "rooms": [
+        "medical"
+      ],
+      "weight": 11,
+      "description": "Nurse Odongo has stepped out to argue with somebody about a form. The cabinet is open. Most of it is paracetamol. Some of it is very much not.",
+      "choices": [
+        {
+          "text": "Patch everybody up properly.",
+          "stat": "intelligence",
+          "tags": [
+            "medical",
+            "tech"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Stitches, splints, and a genuinely competent triage. The party has not felt this good since sentencing.",
+            "heal": 5,
+            "heat": -4,
+            "note": "ran a proper triage in a stolen medical cabinet"
+          },
+          "success": {
+            "text": "Everyone gets bandaged. Two people get the wrong bandage but it broadly works out.",
+            "heal": 3
+          },
+          "failure": {
+            "text": "You confidently administer something. Nobody feels better. One person feels sideways.",
+            "damage": 1,
+            "status": "exhausted"
+          },
+          "crit_failure": {
+            "text": "You mix two things that should never meet. The resulting smell clears the medical wing and draws a crowd.",
+            "damage": 2,
+            "heat": 14,
+            "status": "exhausted"
+          }
+        },
+        {
+          "text": "Take everything sellable.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You clear the cabinet and reorganise the remainder so it looks fuller. Nurse Odongo will compliment the tidiness.",
+            "money": 60,
+            "heat": -4,
+            "note": "robbed a medicine cabinet and was complimented on the tidying"
+          },
+          "success": {
+            "text": "A solid haul. The prison economy runs on exactly this.",
+            "money": 38
+          },
+          "failure": {
+            "text": "You are halfway through a shelf when the form argument ends unexpectedly early.",
+            "heat": 11
+          },
+          "crit_failure": {
+            "text": "You knock over the sharps bin. There is now a medical incident, a security incident, and a cleaning incident, and you are the centre of all three.",
+            "heat": 19,
+            "damage": 2
+          }
+        },
+        {
+          "text": "Forge a medical transfer order.",
+          "requires": {
+            "stat": {
+              "intelligence": 7
+            }
+          },
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning",
+            "deception"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "The order is flawless. Better than flawless — it is countersigned by a doctor who retired in 2019 and nobody will ever check.",
+            "heat": -14,
+            "note": "forged a transfer order signed by a doctor who retired in 2019"
+          },
+          "success": {
+            "text": "It will hold up to a glance. Most things only ever get a glance.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "You spell 'infirmary' wrong. Twice. Differently.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "You accidentally transfer one of your own party to a different facility. On paper. Which in here is the only place that counts.",
+            "heat": 15,
+            "status": "suspicious",
+            "note": "accidentally transferred a teammate to another prison on paper"
+          }
+        }
+      ]
+    },
+    {
+      "id": "guard_station_keys",
+      "title": "Officer Brill's Keys Are On The Desk",
+      "rooms": [
+        "guard_station"
+      ],
+      "weight": 12,
+      "description": "Brill is six feet away, doing a crossword he will not finish. The keys are on the desk. Beside them is a coffee, a radio, and a photograph of a dog.",
+      "choices": [
+        {
+          "text": "Talk to him about the dog.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "The dog is called Biscuit. Biscuit has hip problems. Forty minutes later Brill has shown you the whole album and you have the keys.",
+            "heat": -10,
+            "note": "acquired a guard's keys via forty minutes of dog photographs"
+          },
+          "success": {
+            "text": "Brill turns to get his phone out. The keys move. Brill does not notice.",
+            "heat": -4
+          },
+          "failure": {
+            "text": "It is not his dog. It is his ex-wife's dog. The conversation goes somewhere neither of you wanted.",
+            "heat": 8,
+            "status": "scared"
+          },
+          "crit_failure": {
+            "text": "The dog is deceased. You did not know this. Brill now needs a moment, and a witness, and possibly a report.",
+            "heat": 15,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Lift them. Clean and quick.",
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "stealth"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Taken, copied in wax, and returned before the coffee cools. Brill's crossword is unaffected.",
+            "heat": -8,
+            "note": "copied a guard's keys and put them back before his coffee cooled"
+          },
+          "success": {
+            "text": "Gone. He will notice in about an hour, which is about fifty minutes more than you need.",
+            "heat": 5
+          },
+          "failure": {
+            "text": "The keys jangle. Keys always jangle. That is their whole personality.",
+            "heat": 13
+          },
+          "crit_failure": {
+            "text": "You knock the coffee into the radio. The radio makes a sound no radio should make. Three officers arrive to investigate the radio and find you.",
+            "heat": 22,
+            "damage": 1,
+            "note": "destroyed a guard radio with coffee"
+          }
+        },
+        {
+          "text": "Leave them. Take the duty roster instead.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "You photograph the entire fortnight's rota. You now know when every corridor in this building is empty. This is worth more than any key.",
+            "heat": -12,
+            "note": "photographed a fortnight of guard rotations"
+          },
+          "success": {
+            "text": "Tonight's patrol pattern, memorised. Quietly enormous.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "It is last month's. You memorise it anyway, out of commitment.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "It is not a roster. It is Brill's personal diary. You now know a great deal about Brill and can never look at him again.",
+            "heat": 7,
+            "status": "scared",
+            "note": "accidentally read a guard's diary"
+          }
+        }
+      ]
+    },
+    {
+      "id": "security_camera_loop",
+      "title": "Twelve Screens And One Bored Man",
+      "rooms": [
+        "security"
+      ],
+      "weight": 12,
+      "description": "The security hub covers every corridor in the facility. It is operated, at this hour, by a single technician who has been watching the same empty hallway for three years.",
+      "choices": [
+        {
+          "text": "Loop the camera feeds.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You loop the feeds, backdate the timestamps, and leave a note in the system log that reads 'routine maintenance'. Nobody will ever know you were here.",
+            "heat": -18,
+            "note": "looped every camera and filed it as routine maintenance"
+          },
+          "success": {
+            "text": "Four corridors now show a very peaceful version of five minutes ago.",
+            "heat": -10
+          },
+          "failure": {
+            "text": "The feeds freeze. Frozen feeds are, if anything, more noticeable than moving ones.",
+            "heat": 14
+          },
+          "crit_failure": {
+            "text": "You change the Wi-Fi password. Only the Wi-Fi password. The entire staff body is now extremely alert and extremely annoyed.",
+            "heat": 20,
+            "note": "hacked the security system and changed the prison Wi-Fi password"
+          }
+        },
+        {
+          "text": "Convince the technician you're the IT contractor.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "He not only believes you, he complains about the system for eleven minutes and shows you the admin password to prove a point.",
+            "heat": -14,
+            "money": 20,
+            "note": "was given the admin password by a man venting about his job"
+          },
+          "success": {
+            "text": "He shrugs and goes for a cigarette. You have four minutes.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "He asks for a work order. You do not have a work order. You have a facial expression.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "He is the IT contractor. He has been the IT contractor for three years. He takes this personally.",
+            "heat": 21,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Pull the breaker and run.",
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "chaos"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Total darkness for ninety seconds. You are three rooms away before the backup generator clears its throat.",
+            "heat": 6,
+            "note": "blacked out the security hub and vanished"
+          },
+          "success": {
+            "text": "Darkness. Shouting. Movement. Yours, mostly.",
+            "heat": 11
+          },
+          "failure": {
+            "text": "The emergency lighting is instant and very good. You are illuminated, mid-run, like a stage production.",
+            "heat": 18,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "You pull the wrong breaker and open every cell door on B wing. This is a magnificent disaster and it is entirely yours.",
+            "heat": 30,
+            "money": 30,
+            "status": "scared",
+            "note": "accidentally opened every cell door on B wing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sewer_wade",
+      "title": "The Water Is Higher Than Advertised",
+      "rooms": [
+        "sewer"
+      ],
+      "weight": 12,
+      "description": "The tunnel runs under the east wall. It also runs, currently, about chest-deep. Something bumps your leg. Nobody wants to discuss what.",
+      "choices": [
+        {
+          "text": "Push through. It's only water.",
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "tunnel"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You carry two people on your shoulders and make it look easy. One of them will mention this in their memoirs.",
+            "heat": -6,
+            "note": "carried two teammates through chest-deep sewage"
+          },
+          "success": {
+            "text": "Cold, slow, foul. But through.",
+            "damage": 1
+          },
+          "failure": {
+            "text": "The current is stronger than it looks. So is the smell. Both win.",
+            "damage": 2,
+            "status": "exhausted"
+          },
+          "crit_failure": {
+            "text": "Someone goes under. They come back up holding a traffic cone and refusing to explain.",
+            "damage": 3,
+            "status": "scared",
+            "heat": 6,
+            "note": "surfaced from a sewer holding an unexplained traffic cone"
+          }
+        },
+        {
+          "text": "Find the maintenance ledge above the waterline.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning",
+            "tunnel"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "There is a full service walkway. Dry, lit, and clearly on a schematic somebody chose not to share.",
+            "heat": -8,
+            "note": "found a dry service walkway nobody mentioned"
+          },
+          "success": {
+            "text": "A narrow ledge. Single file, but dry.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "The ledge exists for about nine metres and then simply stops, in the dark, over water.",
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "The ledge is not a ledge. It is a pipe. It has been a pipe this whole time and it has now stopped being one.",
+            "damage": 2,
+            "heat": 9
+          }
+        },
+        {
+          "text": "Send the one who is oddly happy about this.",
+          "requires": {
+            "trait": "born_in_a_tunnel"
+          },
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "tunnel"
+          ],
+          "difficulty": -2,
+          "hint": "Requires somebody genuinely comfortable underground.",
+          "crit_success": {
+            "text": "He knows this tunnel. He has never been in this tunnel. He knows it anyway. Nobody asks how.",
+            "heat": -12,
+            "money": 25,
+            "note": "navigated a sewer he had somehow never been in before"
+          },
+          "success": {
+            "text": "He leads. Everyone follows. It goes fine, which down here counts as a triumph.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "Even he gets turned around. This is deeply unsettling for everyone.",
+            "damage": 1,
+            "heat": 4
+          },
+          "crit_failure": {
+            "text": "He finds a junction he likes and simply stops. Getting him moving again takes twenty minutes and an emotional appeal.",
+            "damage": 1,
+            "status": "exhausted",
+            "heat": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "library_blueprint",
+      "title": "Someone Has Hidden A Blueprint In A Legal Thriller",
+      "rooms": [
+        "library"
+      ],
+      "weight": 10,
+      "description": "Page 214 of 'Verdict of Ashes' is not page 214 of 'Verdict of Ashes'. It is a folded architectural drawing of the east service corridor, annotated in pencil by somebody who is no longer here.",
+      "choices": [
+        {
+          "text": "Read it properly. Take your time.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "It is complete, accurate, and includes a note reading 'the third grille is fake'. The third grille is fake.",
+            "heat": -12,
+            "note": "learned from a library book that the third grille is fake"
+          },
+          "success": {
+            "text": "You get most of it. Two routes, one dead end, one maybe.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "It is upside down and you do not realise for eleven minutes.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "It is a drawing of a different prison entirely. You commit the whole thing to memory before noticing.",
+            "heat": 6,
+            "status": "exhausted"
+          }
+        },
+        {
+          "text": "Take it and go. Read it later.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "You take the blueprint, the book, and three others to make the shelf look untouched. The librarian notices nothing for a week.",
+            "heat": -7,
+            "money": 10
+          },
+          "success": {
+            "text": "Folded, pocketed, gone.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "The librarian is extremely serious about the returns process and has noticed.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "The book is on a watch list. Of course it is. That is why somebody hid a blueprint in it.",
+            "heat": 15,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Leave it. It's obviously bait.",
+          "auto": true,
+          "success": {
+            "text": "You put the book back exactly as you found it and walk away. Two days later somebody else finds it and is immediately, loudly arrested in the east corridor. Good instinct.",
+            "heat": -9,
+            "note": "correctly identified a blueprint as bait and let someone else take it"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_block_headcount",
+      "title": "Unscheduled Head Count",
+      "rooms": [
+        "cell_block"
+      ],
+      "weight": 12,
+      "description": "The lights come up at the wrong hour. Boots in the corridor. Somebody upstairs has decided to count everybody, twice, and slowly.",
+      "choices": [
+        {
+          "text": "Build a convincing person out of laundry.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "deception"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The dummy is so good it gets counted twice and the guards conclude they are one prisoner over. An inquiry begins. It will take weeks.",
+            "heat": -16,
+            "note": "built a laundry dummy so convincing it triggered an internal inquiry"
+          },
+          "success": {
+            "text": "Bedsheets, a mop head, and an attitude. It passes.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "It has no face. Guards are, it turns out, very attentive to faces.",
+            "heat": 11
+          },
+          "crit_failure": {
+            "text": "The dummy falls out of the bunk at the exact moment of counting. It lands face down. The guard screams.",
+            "heat": 19,
+            "status": "scared",
+            "note": "a laundry dummy fell out of a bunk and made a guard scream"
+          }
+        },
+        {
+          "text": "Just be there. Be extremely normal.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "You are so unremarkable that the guard forgets he counted you and counts you again, favourably.",
+            "heat": -8
+          },
+          "success": {
+            "text": "Counted, dismissed, forgotten. Perfect.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "You say 'good evening' to a guard at two in the afternoon. He thinks about that for the rest of the shift.",
+            "heat": 7
+          },
+          "crit_failure": {
+            "text": "You are so aggressively normal that it loops back around into deeply suspicious. Somebody uses the word 'rehearsed'.",
+            "heat": 13,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Slip out during the confusion of the recount.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The recount produces a different number. During the third attempt, you are two wings away and technically counted in both.",
+            "heat": -11,
+            "note": "was counted in two wings simultaneously"
+          },
+          "success": {
+            "text": "Out during the shuffle. Nobody is watching the door when everyone is watching the numbers.",
+            "heat": -4
+          },
+          "failure": {
+            "text": "The corridor is not as empty as the shouting suggested.",
+            "heat": 12,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "You slip out directly into the path of the officer doing the recount. He is holding a clipboard. You are holding a sheet.",
+            "heat": 20,
+            "status": "scared"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maintenance_ceiling",
+      "title": "The Ceiling Is More Of A Suggestion",
+      "rooms": [
+        "maintenance",
+        "workshop"
+      ],
+      "weight": 11,
+      "description": "The maintenance corridor has a suspended ceiling held up by optimism and four screws. Above it: cable runs, ducting, and a crawlspace that goes the entire length of the block.",
+      "choices": [
+        {
+          "text": "Get up there and crawl.",
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "tunnel"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Silent, fast, and directly over the staff room. You hear tomorrow's shift pattern discussed in full.",
+            "heat": -13,
+            "note": "eavesdropped on the staff room from inside the ceiling"
+          },
+          "success": {
+            "text": "The whole length of the block, above everybody's heads.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "A tile shifts. A guard looks up. Guards almost never look up. Today, one does.",
+            "heat": 13
+          },
+          "crit_failure": {
+            "text": "You come through the ceiling into the staff room. Onto a table. There was a cake here too. Why is there always a cake.",
+            "heat": 25,
+            "damage": 2,
+            "note": "fell through a ceiling onto a table with a cake on it"
+          }
+        },
+        {
+          "text": "Cut the right cable. Just one.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "Cameras on the east wing go down and stay down, and the fault logs as a rodent. There are no rodents. There will be an investigation into rodents.",
+            "heat": -15,
+            "note": "disabled a camera wing and blamed it on rodents that do not exist"
+          },
+          "success": {
+            "text": "One camera dies quietly.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "You cut a cable. Something beeps. Something always beeps.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "You cut the cable powering the door you were about to use. It fails closed. It is a very good door.",
+            "heat": 16,
+            "status": "angry",
+            "note": "disabled the exact door they needed"
+          }
+        },
+        {
+          "text": "Take the tools and leave quietly.",
+          "stat": "luck",
+          "tags": [
+            "luck"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "A full toolbag, a torch, a set of overalls, and a laminated badge belonging to someone called Terrence.",
+            "money": 55,
+            "heat": -5,
+            "note": "acquired the identity of a maintenance man called Terrence"
+          },
+          "success": {
+            "text": "A screwdriver and a length of cable. In here that is a shopping spree.",
+            "money": 20
+          },
+          "failure": {
+            "text": "Every tool is stamped, numbered, and checked against a list twice a shift.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "The tool cabinet is alarmed. Of course it is alarmed. It is a prison.",
+            "heat": 17,
+            "status": "scared"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chapel_confession",
+      "title": "Nobody Guards The Chapel",
+      "rooms": [
+        "chapel"
+      ],
+      "weight": 10,
+      "description": "It is empty, it is quiet, and it has a door to the east service corridor that has been propped open with a hymn book since roughly the invention of hymn books.",
+      "choices": [
+        {
+          "text": "Use the propped door. Say nothing to anybody.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Through, and the hymn book is back in place behind you. The route stays open. This is the single most valuable thing you have done all day.",
+            "heat": -12,
+            "note": "found a permanently propped chapel door and kept it secret"
+          },
+          "success": {
+            "text": "Through the door, into the corridor, unseen.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "The door has been noticed. Recently. By somebody with a screwdriver.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "The hymn book is load-bearing. The door closes. It locks. From the other side.",
+            "heat": 14,
+            "status": "angry"
+          }
+        },
+        {
+          "text": "Hold a service. A very long one.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "chaos"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Forty men attend. Two guards attend. One guard weeps. The east corridor is completely unobserved for an hour and a quarter.",
+            "heat": -17,
+            "money": 30,
+            "note": "held a fake church service so moving that a guard wept"
+          },
+          "success": {
+            "text": "A modest congregation, a modest sermon, and a very useful twenty minutes.",
+            "heat": -8,
+            "money": 12
+          },
+          "failure": {
+            "text": "Three attendees. One is asleep. One is a guard checking whether this is allowed.",
+            "heat": 7
+          },
+          "crit_failure": {
+            "text": "You are asked a theological question you cannot answer. The chaplain, who was in the back the whole time, has follow-ups.",
+            "heat": 13,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Search the collection box.",
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "chaos"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Cash, a key, and a folded note reading 'IF YOU ARE READING THIS, THE LAUNDRY VENT'. Somebody has been here before you.",
+            "money": 65,
+            "heat": -6,
+            "note": "found a note from a previous escapee in the collection box"
+          },
+          "success": {
+            "text": "Eleven pounds in loose change and a button.",
+            "money": 26
+          },
+          "failure": {
+            "text": "Empty. Somebody got here first. Somebody always gets there first.",
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "It is not a collection box. It is an alarm housing that looks like a collection box. Somebody designed that deliberately and you would like to meet them.",
+            "heat": 18,
+            "note": "set off an alarm disguised as a collection box"
+          }
+        }
+      ]
+    },
+    {
+      "id": "high_heat_dogs",
+      "title": "There Are Dogs Now",
+      "rooms": [
+        "yard",
+        "cell_block",
+        "cafeteria",
+        "laundry",
+        "maintenance",
+        "workshop"
+      ],
+      "min_heat": 60,
+      "weight": 16,
+      "description": "There were never dogs before. Two handlers are working the corridor with animals that are extremely good at their job and extremely pleased about it.",
+      "choices": [
+        {
+          "text": "Outrun them. Commit fully.",
+          "stat": "speed",
+          "tags": [
+            "speed"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You are faster than a dog for exactly as long as you need to be, which is a sentence that should not be true.",
+            "heat": -8,
+            "note": "outran a trained dog and refuses to stop talking about it"
+          },
+          "success": {
+            "text": "Through a door, and the door holds. Just.",
+            "heat": 4,
+            "damage": 1
+          },
+          "failure": {
+            "text": "Dogs are faster than people. This is well documented. You have now documented it again.",
+            "heat": 15,
+            "damage": 2,
+            "status": "injured"
+          },
+          "crit_failure": {
+            "text": "You run directly into the second handler, who had gone round. Dogs are also smarter than people.",
+            "heat": 24,
+            "damage": 3,
+            "status": "injured"
+          }
+        },
+        {
+          "text": "Mask the scent. Laundry chemicals, pepper, anything.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The dogs lose the trail entirely and, worse for the handlers, find something else. An unrelated and much larger operation is discovered two wings away.",
+            "heat": -20,
+            "note": "misdirected the dogs into exposing somebody else's operation"
+          },
+          "success": {
+            "text": "The trail goes cold. The handlers argue about the equipment.",
+            "heat": -9
+          },
+          "failure": {
+            "text": "You smell strongly of bleach, which is not a smell that occurs naturally in a corridor.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "You have made yourself the single most interesting smell in the building.",
+            "heat": 22,
+            "damage": 1,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Befriend the dogs.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "hint": "This is, on paper, a terrible idea.",
+          "crit_success": {
+            "text": "Both dogs sit. Both dogs will not stop sitting. The handlers are humiliated and the search is abandoned for the evening.",
+            "heat": -22,
+            "note": "convinced two police dogs to simply sit down forever"
+          },
+          "success": {
+            "text": "One dog is now conflicted. That is genuinely enough.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "The dogs are professionals. You are not.",
+            "heat": 14,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "One dog now likes you enormously and will not leave your side. This is the opposite of helpful.",
+            "heat": 20,
+            "damage": 1,
+            "status": "scared",
+            "note": "was adopted by a police dog at the worst possible moment"
+          }
+        }
+      ]
+    },
+    {
+      "id": "generic_shakedown",
+      "title": "Cell Shakedown",
+      "rooms": [
+        "any"
+      ],
+      "weight": 9,
+      "description": "Random search. They are pulling mattresses apart three doors down and working their way along. You have things you should not have.",
+      "choices": [
+        {
+          "text": "Hide everything. Properly.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Everything goes into a place so obvious that nobody looks there. You are congratulated on how tidy the cell is.",
+            "heat": -7
+          },
+          "success": {
+            "text": "Stashed. They find nothing but a very clean floor.",
+            "heat": -2
+          },
+          "failure": {
+            "text": "They find some of it. Enough of it.",
+            "heat": 10,
+            "money": -25
+          },
+          "crit_failure": {
+            "text": "They find all of it, plus two things you did not know you had and cannot account for.",
+            "heat": 18,
+            "money": -45,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Bribe the officer doing the search.",
+          "cost_money": 40,
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "He takes the money, skips your cell, and skips the next three as a courtesy. You now have a contact.",
+            "heat": -12,
+            "note": "bought a guard and got three neighbours skipped as a bonus"
+          },
+          "success": {
+            "text": "He looks at the ceiling for ninety seconds. Transaction complete.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "He takes the money and searches anyway. There is no complaints procedure for this.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "He is the one officer here who cannot be bought, and he is extremely keen for everyone to know it.",
+            "heat": 20,
+            "money": -10,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Create a diversion three cells down.",
+          "stat": "luck",
+          "tags": [
+            "chaos",
+            "luck"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "The diversion becomes an incident. The incident becomes a form. The search is abandoned on page two of the form.",
+            "heat": -10,
+            "note": "ended a shakedown by generating too much paperwork"
+          },
+          "success": {
+            "text": "Shouting elsewhere. Search postponed.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "Nothing happens. Diversions require somebody to be diverted.",
+            "heat": 7
+          },
+          "crit_failure": {
+            "text": "The diversion works spectacularly and then is traced back to you within four minutes.",
+            "heat": 19,
+            "damage": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "generic_new_guy",
+      "title": "A New Officer Is On The Wing",
+      "rooms": [
+        "any"
+      ],
+      "weight": 10,
+      "max_heat": 70,
+      "description": "He is young, he is nervous, and he has clearly been told not to trust anybody. He is also holding the corridor keys like they are a live animal.",
+      "choices": [
+        {
+          "text": "Be helpful. Suspiciously helpful.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "By the end of the shift he considers you a mentor, a confidant, and the reason he has decided to stay in the job. He tells you everything.",
+            "heat": -15,
+            "money": 15,
+            "note": "became a nervous young guard's personal mentor"
+          },
+          "success": {
+            "text": "He relaxes. Relaxed guards are useful guards.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "He has been warned about exactly this and recognises it immediately.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "He panics and radios it in as an attempted manipulation, which it was, but hearing it said out loud is still upsetting.",
+            "heat": 17,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Frighten him off the wing entirely.",
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "chaos"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He requests a transfer before lunch. His replacement will not arrive for three days.",
+            "heat": 4,
+            "note": "scared a guard into requesting a transfer before lunch"
+          },
+          "success": {
+            "text": "He works the far end of the corridor for the rest of the shift.",
+            "heat": 7
+          },
+          "failure": {
+            "text": "He does not scare. He was raised with brothers.",
+            "heat": 13,
+            "status": "angry"
+          },
+          "crit_failure": {
+            "text": "He panics, hits the alarm, and then apologises to everyone for the next twenty minutes while the wing is searched.",
+            "heat": 23,
+            "damage": 1
+          }
+        },
+        {
+          "text": "Watch him. Learn the new routine.",
+          "stat": "intelligence",
+          "tags": [
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He does everything by the book. The book is public. You now have his entire shift memorised, to the minute, forever.",
+            "heat": -13,
+            "note": "memorised a rookie guard's entire shift because he followed the manual exactly"
+          },
+          "success": {
+            "text": "Two reliable gaps identified in his patrol.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "He has no routine at all. That is somehow worse than a good one.",
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "He notices you watching him. He has been told about people watching him. He writes your number down.",
+            "heat": 14,
+            "status": "suspicious"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yard_weights",
+      "title": "The Weight Pile Dispute",
+      "rooms": [
+        "yard"
+      ],
+      "weight": 9,
+      "description": "Three very large men have claimed the weight bench and the general area around the weight bench. Behind them, unattended, is the maintenance gate you need.",
+      "choices": [
+        {
+          "text": "Out-lift them. Earn the right to walk past.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You lift something that should require two people and a permit. They carry you to the gate personally.",
+            "heat": -6,
+            "note": "was carried to a locked gate by three men they had just out-lifted"
+          },
+          "success": {
+            "text": "Respect earned. Gate access granted. Forearms destroyed.",
+            "heat": -2,
+            "damage": 1
+          },
+          "failure": {
+            "text": "You get it halfway up and hold it there while thinking about your choices.",
+            "heat": 6,
+            "damage": 1,
+            "status": "exhausted"
+          },
+          "crit_failure": {
+            "text": "You drop it. On the bench. The bench is now two benches.",
+            "heat": 12,
+            "damage": 2,
+            "status": "injured"
+          }
+        },
+        {
+          "text": "Talk your way through.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You end up spotting for all three, learning their names, and being invited to something on Thursday. They open the gate for you.",
+            "heat": -8,
+            "money": 20
+          },
+          "success": {
+            "text": "A brief negotiation. Safe passage agreed.",
+            "heat": -3
+          },
+          "failure": {
+            "text": "They are not in a negotiating mood. They are in a third-set mood.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "You use the phrase 'do you even'. You do not finish the sentence. Nobody does.",
+            "heat": 14,
+            "damage": 2,
+            "status": "injured"
+          }
+        },
+        {
+          "text": "Go the long way around. Boring but survivable.",
+          "auto": true,
+          "success": {
+            "text": "Six extra minutes and a wide berth. Nothing happens, which is the entire point of going the long way around.",
+            "heat": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "laundry_uniform_swap",
+      "title": "A Basket Of Staff Uniforms",
+      "rooms": [
+        "laundry"
+      ],
+      "weight": 11,
+      "description": "Guard shirts. Trousers. One jacket with a name badge reading 'OFFICER M. HALLIWELL'. The laundry does staff kit on Tuesdays and today, gloriously, is Tuesday.",
+      "choices": [
+        {
+          "text": "Take a full uniform and wear it now.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You are not only mistaken for staff, you are asked to cover a shift. You decline. Professionally.",
+            "heat": -18,
+            "money": 25,
+            "note": "was asked to cover a guard's shift while escaping"
+          },
+          "success": {
+            "text": "It fits well enough at a distance, and a distance is all you need.",
+            "heat": -9
+          },
+          "failure": {
+            "text": "The trousers are four sizes wrong and you are walking like a man in the wrong trousers.",
+            "heat": 11
+          },
+          "crit_failure": {
+            "text": "You meet the actual Officer M. Halliwell. He is looking for his jacket. You are wearing his jacket.",
+            "heat": 24,
+            "status": "scared",
+            "note": "met the guard whose jacket they were currently wearing"
+          }
+        },
+        {
+          "text": "Take one and stash it for the escape.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Two full uniforms, a radio, and a lanyard, all hidden somewhere nobody will find before Friday.",
+            "money": 30,
+            "heat": -6,
+            "note": "stockpiled two guard uniforms and a radio"
+          },
+          "success": {
+            "text": "One uniform, safely hidden. A future problem solved early.",
+            "heat": -2,
+            "money": 15
+          },
+          "failure": {
+            "text": "Staff kit is counted. Of course staff kit is counted.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "You hide it in a dryer. Somebody runs the dryer. It is now a very small uniform.",
+            "heat": 12,
+            "money": -15
+          }
+        },
+        {
+          "text": "Sabotage the machines instead. Buy time.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Every machine fails in a way that looks like a supplier problem. Staff kit goes out for external cleaning. Half the guards are in the wrong trousers for a week.",
+            "heat": -13,
+            "note": "put half the prison's guards into the wrong trousers for a week"
+          },
+          "success": {
+            "text": "Two machines down. The laundry schedule collapses pleasantly.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "Nothing breaks. These machines have survived worse than you.",
+            "heat": 5
+          },
+          "crit_failure": {
+            "text": "You flood the wing. Again. There is now a written policy about this and it has your wing's name in it.",
+            "heat": 18,
+            "damage": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "medical_fake_illness",
+      "title": "Somebody Needs To Be Convincingly Unwell",
+      "rooms": [
+        "medical",
+        "cell_block"
+      ],
+      "weight": 10,
+      "description": "A medical transfer means a van. A van means a gate. A gate means the outside. All it requires is somebody being unambiguously, undeniably ill.",
+      "choices": [
+        {
+          "text": "Fake it. Commit to the performance.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception",
+            "medical"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The performance is so complete that two nurses argue about the diagnosis and a van is booked for Thursday.",
+            "heat": -16,
+            "note": "faked an illness so well a transfer van was booked"
+          },
+          "success": {
+            "text": "Bed rest, observation, and a very useful forty minutes alone in the medical wing.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "You overact. Nobody has ever clutched their side like that in the history of illness.",
+            "heat": 10
+          },
+          "crit_failure": {
+            "text": "They believe you completely and immediately administer something. You are now genuinely unwell. The system works.",
+            "damage": 3,
+            "status": "exhausted",
+            "heat": 6,
+            "note": "faked an illness and was cured into a real one"
+          }
+        },
+        {
+          "text": "Make it real. Eat something from the cafeteria.",
+          "stat": "luck",
+          "tags": [
+            "chaos"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "It works immediately, dramatically, and — crucially — non-fatally. The medical staff have never seen anything like it and neither has anybody else.",
+            "heat": -14,
+            "damage": 1,
+            "note": "achieved a medical transfer via the cafeteria"
+          },
+          "success": {
+            "text": "Twenty unpleasant minutes and a legitimate medical note.",
+            "heat": -6,
+            "damage": 2
+          },
+          "failure": {
+            "text": "Nothing happens. You have built up a tolerance. That is the most upsetting possible outcome.",
+            "damage": 1,
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "It works far, far too well. Two of you are now unwell and one of you is unconscious under a table.",
+            "damage": 4,
+            "status": "unconscious",
+            "heat": 9,
+            "note": "put a teammate under a table with cafeteria food"
+          }
+        },
+        {
+          "text": "Forge the paperwork and skip the illness entirely.",
+          "requires": {
+            "stat": {
+              "intelligence": 8
+            }
+          },
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "The transfer is approved, scheduled, and countersigned. It is the cleanest piece of work anybody in this building has produced in years.",
+            "heat": -20,
+            "note": "forged a medical transfer so clean the administration thanked them"
+          },
+          "success": {
+            "text": "Approved. Provisionally. Nobody reads the provisional bit.",
+            "heat": -9
+          },
+          "failure": {
+            "text": "The form requires a stamp. You do not have the stamp. Everything in here requires a stamp.",
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "You forge the signature of a doctor who is currently standing behind you.",
+            "heat": 22,
+            "status": "suspicious"
+          }
+        }
+      ]
+    },
+    {
+      "id": "workshop_supervisor_deal",
+      "title": "The Supervisor Wants Something",
+      "rooms": [
+        "workshop",
+        "maintenance"
+      ],
+      "weight": 10,
+      "description": "He has noticed you. He has not reported you. He has, instead, mentioned — twice, unprompted — how difficult it is to get decent coffee in this building.",
+      "choices": [
+        {
+          "text": "Pay him. Obviously pay him.",
+          "cost_money": 50,
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": -2,
+          "crit_success": {
+            "text": "He takes the money, hands you a key, and mentions that he leaves at four and the door does not lock itself.",
+            "heat": -16,
+            "note": "bought a workshop supervisor for the price of coffee"
+          },
+          "success": {
+            "text": "He looks the other way for the rest of the week.",
+            "heat": -8
+          },
+          "failure": {
+            "text": "He takes it and says he'll 'see what he can do', which in here means nothing at all.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "He was testing you. He has wanted a promotion for eleven years and you have just provided it.",
+            "heat": 21,
+            "money": -20,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Blackmail him instead.",
+          "stat": "intelligence",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You know about the tools he sells. He knows you know. The workshop is effectively yours now.",
+            "heat": -18,
+            "money": 40,
+            "note": "took control of the workshop through mild blackmail"
+          },
+          "success": {
+            "text": "An understanding is reached. Nobody is happy. Everybody is quiet.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "He has nothing to hide, which makes him either honest or extremely good.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "He does have something to hide and he would rather burn the whole thing down than be leveraged by you.",
+            "heat": 25,
+            "damage": 1,
+            "status": "angry"
+          }
+        },
+        {
+          "text": "Ignore him and work faster.",
+          "stat": "speed",
+          "tags": [
+            "speed"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "You are done before he decides what to do about you. The moment passes. He goes back to the magazine.",
+            "heat": -4
+          },
+          "success": {
+            "text": "Finished, and out, and only mildly noticed.",
+            "heat": 3
+          },
+          "failure": {
+            "text": "He decides what to do about you. It involves a form.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "Rushing in a room full of power tools goes exactly as rushing in a room full of power tools goes.",
+            "heat": 14,
+            "damage": 2,
+            "status": "injured"
+          }
+        }
+      ]
+    },
+    {
+      "id": "generic_argument",
+      "title": "Two Of Your Own Are Arguing",
+      "rooms": [
+        "any"
+      ],
+      "weight": 8,
+      "description": "It started about the plan. It is now about something that happened in the cafeteria on Tuesday, and before that about somebody's mother. Volume is increasing. So is the audience.",
+      "choices": [
+        {
+          "text": "Mediate. Calmly.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Not only resolved, but resolved into genuine affection. They are now a unit. The whole crew works better.",
+            "heat": -8,
+            "heal": 3,
+            "note": "turned an argument about somebody's mother into a lifelong friendship"
+          },
+          "success": {
+            "text": "Apologies exchanged, grudgingly, in the correct direction.",
+            "heat": -3,
+            "heal": 1
+          },
+          "failure": {
+            "text": "You take a side. It is the wrong side. It is now a three-way argument.",
+            "heat": 8,
+            "status": "angry"
+          },
+          "crit_failure": {
+            "text": "They unite. Against you. This was not the outcome you were aiming for but it is technically a resolution.",
+            "heat": 12,
+            "damage": 1,
+            "status": "angry"
+          }
+        },
+        {
+          "text": "Let them fight. It's good cover.",
+          "stat": "luck",
+          "tags": [
+            "chaos",
+            "luck"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Every guard on the wing converges on the argument. The corridor behind them is empty for four full minutes.",
+            "heat": -10,
+            "note": "used an internal argument as a four-minute diversion"
+          },
+          "success": {
+            "text": "Noisy, brief, and genuinely useful.",
+            "heat": -4,
+            "damage": 1
+          },
+          "failure": {
+            "text": "It escalates past the useful stage and into the recorded stage.",
+            "heat": 13,
+            "damage": 2
+          },
+          "crit_failure": {
+            "text": "It becomes a wing-wide incident. Two of yours go to segregation. The plan is now substantially worse.",
+            "heat": 22,
+            "damage": 2,
+            "status": "injured",
+            "note": "let an argument become a wing-wide incident"
+          }
+        },
+        {
+          "text": "End it physically. Immediately.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "One movement. Total silence. Nobody in the crew will argue again for the rest of the run.",
+            "heat": 2,
+            "note": "ended all internal dissent with a single movement"
+          },
+          "success": {
+            "text": "Separated, seated, silenced.",
+            "heat": 5
+          },
+          "failure": {
+            "text": "You are now in the argument, and physically, and losing.",
+            "heat": 12,
+            "damage": 2
+          },
+          "crit_failure": {
+            "text": "All three of you go down and a guard arrives to find a pile of your own team.",
+            "heat": 20,
+            "damage": 3,
+            "status": "injured"
+          }
+        }
+      ]
+    },
+    {
+      "id": "generic_informant",
+      "title": "Somebody Is Talking To The Guards",
+      "rooms": [
+        "any"
+      ],
+      "weight": 9,
+      "min_heat": 30,
+      "description": "The searches are too well targeted. Somebody on this wing is passing information, and the information is about you.",
+      "choices": [
+        {
+          "text": "Identify him. Quietly.",
+          "stat": "intelligence",
+          "tags": [
+            "planning"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Found, confirmed, and — better — fed a false plan that he delivers with total confidence. The guards will now be watching the wrong wall.",
+            "heat": -20,
+            "note": "fed a prison informant a completely fictional escape plan"
+          },
+          "success": {
+            "text": "Identified. Avoided. Neutralised socially.",
+            "heat": -8
+          },
+          "failure": {
+            "text": "You suspect the wrong man and he is extremely insulted about it.",
+            "heat": 9,
+            "status": "angry"
+          },
+          "crit_failure": {
+            "text": "You investigate openly. The informant notices immediately and reports the investigation.",
+            "heat": 20,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Buy his silence.",
+          "cost_money": 45,
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He takes the money and, unprompted, throws in everything he has already told them.",
+            "heat": -16,
+            "note": "bought an informant and got a full debrief thrown in"
+          },
+          "success": {
+            "text": "Quiet, for now, at a price.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "He takes it and reports the bribe, which is, you have to admit, professionally consistent.",
+            "heat": 14
+          },
+          "crit_failure": {
+            "text": "There were two informants. You have now bought the less important one and alerted the other.",
+            "heat": 22,
+            "money": -20
+          }
+        },
+        {
+          "text": "Do nothing. Change nothing. Give him nothing to report.",
+          "auto": true,
+          "success": {
+            "text": "You say nothing useful near anybody for two full days. It is agonising, it is boring, and it works perfectly.",
+            "heat": -11,
+            "status": "exhausted",
+            "note": "starved out an informant through sheer tedium"
+          }
+        }
+      ]
+    },
+    {
+      "id": "outer_wall_scout",
+      "title": "You Can See The Wall From Here",
+      "rooms": [
+        "outer_wall",
+        "yard"
+      ],
+      "weight": 12,
+      "description": "Forty feet of concrete, a lit strip at the base, and a tower at each corner. Somewhere along it is the section that was rebuilt cheaply in 2011.",
+      "choices": [
+        {
+          "text": "Find the cheap section.",
+          "stat": "intelligence",
+          "tags": [
+            "planning",
+            "tech"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Found. It is nine metres of render over breeze block and a drainage void nobody filled in. This changes everything.",
+            "heat": -14,
+            "note": "located the section of wall rebuilt cheaply in 2011"
+          },
+          "success": {
+            "text": "Two candidate sections identified. One is probably it.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "It all looks like wall. That is the problem with walls.",
+            "heat": 4
+          },
+          "crit_failure": {
+            "text": "You spend twenty minutes staring at a wall from the yard. Somebody in a tower spends twenty minutes watching a man stare at a wall.",
+            "heat": 18,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Time the tower sweeps.",
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Fourteen second gap, every two minutes, both towers, synchronised because somebody set them up that way to save effort.",
+            "heat": -12,
+            "note": "found a fourteen-second synchronised gap in the tower sweeps"
+          },
+          "success": {
+            "text": "A gap exists. It is short but it is real.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "The sweeps are irregular, which means somebody is doing them by hand, which is much worse.",
+            "heat": 5
+          },
+          "crit_failure": {
+            "text": "The light stops on you and stays there. Somebody is doing them by hand and has found something to look at.",
+            "heat": 20,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Test the wall. Physically. Right now.",
+          "stat": "strength",
+          "tags": [
+            "physical"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "A section gives more than it should. Quietly. You now know the wall has a weakness and the wall does not know you know.",
+            "heat": 5,
+            "note": "found a soft section of the outer wall by simply pushing it"
+          },
+          "success": {
+            "text": "It holds, but it complains. Noted.",
+            "heat": 9
+          },
+          "failure": {
+            "text": "It is, disappointingly, a wall.",
+            "heat": 13,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "You dislodge a facing stone. It lands on the lit strip. A tower light comes round to see why a wall made a noise.",
+            "heat": 26,
+            "damage": 2,
+            "status": "injured"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cafeteria_kitchen_pass",
+      "title": "The Kitchen Has A Delivery Door",
+      "rooms": [
+        "cafeteria"
+      ],
+      "weight": 11,
+      "description": "Deliveries come Tuesdays and Fridays. The door is open for eleven minutes and a man with a clipboard counts crates while a lorry idles outside.",
+      "choices": [
+        {
+          "text": "Get into a crate.",
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "tunnel"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You are counted, loaded, and briefly outside the wall. You get out before the lorry leaves, but now you know the whole route.",
+            "heat": -15,
+            "note": "was counted as cargo and loaded onto a lorry"
+          },
+          "success": {
+            "text": "Inside a crate, inside the loading bay. Progress with a very specific smell.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "The crates are counted by weight. You have altered the weight considerably.",
+            "heat": 13
+          },
+          "crit_failure": {
+            "text": "The crate is loaded, driven eleven metres, and unloaded into the freezer. You are now in the freezer.",
+            "heat": 17,
+            "damage": 2,
+            "status": "exhausted",
+            "note": "was crated, loaded, and unloaded directly into a freezer"
+          }
+        },
+        {
+          "text": "Charm the delivery driver.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He hates this job, hates the clipboard man, and would love to help. He gives you his schedule for the month.",
+            "heat": -13,
+            "money": 25,
+            "note": "recruited a delivery driver purely through shared hatred of a clipboard"
+          },
+          "success": {
+            "text": "Friendly. Useful. He mentions the gate code without being asked.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "He has done this route for nine years and has heard every single one of these.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "He reports the conversation. He is required to. He seemed genuinely sorry about it.",
+            "heat": 18,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Take the food. Just take a lot of food.",
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "chaos"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Eleven minutes, four armfuls, zero witnesses. The wing eats well tonight and the wing remembers who fed it.",
+            "money": 55,
+            "heal": 3,
+            "heat": -4,
+            "note": "fed an entire wing off one delivery and bought a lot of goodwill"
+          },
+          "success": {
+            "text": "Meat, bread, and something in a tin. Wealth.",
+            "money": 30,
+            "heal": 1
+          },
+          "failure": {
+            "text": "The clipboard man counts crates for a living. Counting is his entire identity.",
+            "heat": 10
+          },
+          "crit_failure": {
+            "text": "You drop a crate of something frozen on your own foot in front of everybody.",
+            "heat": 13,
+            "damage": 2,
+            "status": "injured"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lockdown_event",
+      "title": "LOCKDOWN",
+      "rooms": [
+        "any"
+      ],
+      "min_heat": 88,
+      "weight": 25,
+      "description": "Every door in the building has just agreed on something. The corridors are empty. There are two officers per junction and they are not doing crosswords.",
+      "choices": [
+        {
+          "text": "Go to ground. Wait it out. Be furniture.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Six hours motionless behind a laundry press. When it lifts, nobody has any record of where you were, because you were nowhere.",
+            "heat": -30,
+            "status": "exhausted",
+            "note": "spent six hours motionless behind a laundry press"
+          },
+          "success": {
+            "text": "It lifts eventually. It always lifts eventually.",
+            "heat": -18,
+            "status": "exhausted"
+          },
+          "failure": {
+            "text": "Sweep teams work in threes during lockdown, which is two more than you planned for.",
+            "heat": 8,
+            "damage": 2
+          },
+          "crit_failure": {
+            "text": "You hide somewhere that is searched first, every time, by policy. It is in the manual. You have not read the manual.",
+            "heat": 10,
+            "damage": 3,
+            "status": "injured"
+          }
+        },
+        {
+          "text": "Move now, while they're still organising.",
+          "stat": "speed",
+          "tags": [
+            "speed"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You move through three junctions before the second officer reaches the first. Lockdown takes four minutes to become real and you used all four.",
+            "heat": -22,
+            "note": "beat a lockdown by moving during the four minutes it took to organise"
+          },
+          "success": {
+            "text": "Two junctions cleared. Then a door. A very final-sounding door.",
+            "heat": -10,
+            "damage": 1
+          },
+          "failure": {
+            "text": "Lockdown was already real. It became real while you were deciding.",
+            "heat": 6,
+            "damage": 2,
+            "status": "injured"
+          },
+          "crit_failure": {
+            "text": "You run into a sealed junction at speed and the sealed junction wins comprehensively.",
+            "heat": 9,
+            "damage": 3,
+            "status": "unconscious"
+          }
+        },
+        {
+          "text": "Convince somebody this is a drill.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 3,
+          "crit_success": {
+            "text": "You persuade a junction officer that this is the quarterly drill. He relaxes. He tells the next junction. The lockdown is unwound conversationally by one man with confidence.",
+            "heat": -35,
+            "money": 20,
+            "note": "verbally talked an entire prison out of a lockdown"
+          },
+          "success": {
+            "text": "One officer half-believes you. Half is enough for one corridor.",
+            "heat": -14
+          },
+          "failure": {
+            "text": "Nobody drills at this hour. Everybody knows nobody drills at this hour.",
+            "heat": 5,
+            "status": "suspicious"
+          },
+          "crit_failure": {
+            "text": "You explain the drill schedule in detail to the man who writes the drill schedule.",
+            "heat": 8,
+            "damage": 2,
+            "status": "scared"
+          }
+        }
+      ]
+    },
+    {
+      "id": "generic_windfall",
+      "title": "An Unattended Wallet",
+      "rooms": [
+        "any"
+      ],
+      "weight": 7,
+      "max_heat": 60,
+      "description": "It is on a bench. It is fat. It belongs, judging by the lanyard next to it, to somebody who works here and who will be back in approximately ninety seconds.",
+      "choices": [
+        {
+          "text": "Take the cash and leave the wallet.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Cash gone, wallet untouched, and the lanyard photographed for later forgery. He will blame himself for weeks.",
+            "money": 70,
+            "heat": -5,
+            "note": "robbed a staff wallet so cleanly the victim blamed himself"
+          },
+          "success": {
+            "text": "Cash. Gone. Wallet exactly as it was.",
+            "money": 45
+          },
+          "failure": {
+            "text": "You are a man holding another man's wallet in a prison. There is no innocent version of this.",
+            "heat": 12,
+            "money": 15
+          },
+          "crit_failure": {
+            "text": "There is a tracker in the wallet, because of course there is, because this has clearly happened before.",
+            "heat": 22,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Take the whole thing including the lanyard.",
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "chaos"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Cash, cards, and a working staff access lanyard. This is the best ninety seconds anybody has had in this building in years.",
+            "money": 60,
+            "heat": -8,
+            "note": "acquired a working staff access lanyard off a bench"
+          },
+          "success": {
+            "text": "The lanyard works on two doors. Two is a lot of doors.",
+            "money": 25,
+            "heat": 4
+          },
+          "failure": {
+            "text": "The lanyard is deactivated within the hour and the search begins within two.",
+            "heat": 16,
+            "money": 20
+          },
+          "crit_failure": {
+            "text": "He comes back at second forty, not ninety. You are still choosing.",
+            "heat": 24,
+            "damage": 1,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Hand it in. Build a reputation.",
+          "auto": true,
+          "success": {
+            "text": "You return it, full, to a stunned officer. The story travels. For the rest of the week, guards give you the benefit of the doubt they give nobody.",
+            "heat": -16,
+            "money": 10,
+            "note": "handed in a full wallet and bought a week of institutional goodwill"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sewer_grate",
+      "title": "The Grate At The End",
+      "rooms": [
+        "sewer",
+        "maintenance"
+      ],
+      "weight": 11,
+      "description": "The tunnel ends at a steel grate. Beyond it, twelve metres of pipe, and then a field. Somebody welded this grate in 1998 and has not thought about it since.",
+      "choices": [
+        {
+          "text": "Force it. Everything you've got.",
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "tunnel"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "The 1998 weld gives like it has been waiting twenty-seven years to be asked. Almost silent. Almost polite.",
+            "heat": -8,
+            "note": "defeated a 1998 weld through pure enthusiasm"
+          },
+          "success": {
+            "text": "It bends. Enough for a person. A thin, determined, unhappy person.",
+            "damage": 1,
+            "heat": 4
+          },
+          "failure": {
+            "text": "1998 was a good year for welding.",
+            "damage": 2,
+            "status": "exhausted",
+            "heat": 6
+          },
+          "crit_failure": {
+            "text": "The grate holds and the wall it is set into does not. You are now under a small amount of prison.",
+            "damage": 3,
+            "status": "injured",
+            "heat": 14
+          }
+        },
+        {
+          "text": "Cut it properly. You have tools, or you'll make some.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "tunnel"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Four clean cuts and a hinge fashioned from wire, so the grate still looks welded shut when you put it back.",
+            "heat": -16,
+            "note": "converted a welded grate into a hinged door nobody noticed"
+          },
+          "success": {
+            "text": "Through, and roughly repairable behind you.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "You are cutting hardened steel with something that is not for cutting hardened steel.",
+            "heat": 7,
+            "damage": 1
+          },
+          "crit_failure": {
+            "text": "The cut-off blade pings off the grate, off the wall, and off your teammate. Everybody is fine. Nobody is happy.",
+            "heat": 12,
+            "damage": 2,
+            "status": "angry"
+          }
+        },
+        {
+          "text": "Look for another way. There's always another way.",
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "tunnel"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "There is an inspection hatch eleven metres back that somebody left unbolted in, judging by the dust, roughly 2014.",
+            "heat": -13,
+            "note": "found an inspection hatch left unbolted since 2014"
+          },
+          "success": {
+            "text": "A side channel. Tighter, longer, and open.",
+            "heat": -5,
+            "damage": 1
+          },
+          "failure": {
+            "text": "Forty minutes of tunnel and back again. The grate is still there. The grate was always going to still be there.",
+            "status": "exhausted",
+            "heat": 5
+          },
+          "crit_failure": {
+            "text": "You find a channel, follow it confidently, and emerge in the yard. Inside. In daylight.",
+            "heat": 24,
+            "status": "exhausted",
+            "note": "took a secret tunnel that emerged in the middle of the yard"
+          }
+        }
+      ]
+    },
+    {
+      "id": "guard_station_radio",
+      "title": "An Unattended Radio",
+      "rooms": [
+        "guard_station",
+        "security"
+      ],
+      "weight": 10,
+      "description": "Channel four. Every officer on shift. It is sitting on a filing cabinet and it is, at this precise moment, nobody's.",
+      "choices": [
+        {
+          "text": "Listen. Learn everything.",
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Call signs, patrol assignments, the fact that the east tower is unmanned until eight, and a long argument about a rota that reveals who is where and why.",
+            "heat": -15,
+            "note": "learned the east tower is unmanned until eight by simply listening"
+          },
+          "success": {
+            "text": "Two patrol positions and a name. Useful.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "Fourteen minutes of a man describing his lunch.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "It is a two-way radio and you have been leaning on the transmit button for fourteen minutes.",
+            "heat": 22,
+            "status": "scared",
+            "note": "broadcast themselves on the guard channel for fourteen minutes"
+          }
+        },
+        {
+          "text": "Call in a false incident on the far side of the building.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "crit_success": {
+            "text": "You report a disturbance in D wing in a voice so bored and so procedurally correct that six officers respond and one asks if you need a hand.",
+            "heat": -25,
+            "note": "called in a fake incident so convincingly that officers offered to help them"
+          },
+          "success": {
+            "text": "Three officers head the wrong way at speed.",
+            "heat": -12
+          },
+          "failure": {
+            "text": "You do not have the call sign. The call sign is the entire system.",
+            "heat": 14
+          },
+          "crit_failure": {
+            "text": "You report the disturbance to the officer standing directly behind you, in stereo.",
+            "heat": 26,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Steal it. Take it with you.",
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Taken, and the spare taken too, and a battery pack. You will know where every officer is for the rest of the night.",
+            "money": 35,
+            "heat": -10,
+            "note": "stole the guard radio, the spare, and the batteries"
+          },
+          "success": {
+            "text": "Yours. Volume down. Earpiece in.",
+            "heat": -4,
+            "money": 15
+          },
+          "failure": {
+            "text": "Radios are signed out per officer, per shift, and checked back in.",
+            "heat": 12
+          },
+          "crit_failure": {
+            "text": "It is a charging dock. Removing it triggers a fault alert and a very specific, very loud tone.",
+            "heat": 21,
+            "damage": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cell_block_neighbour",
+      "title": "The Man In The Next Cell Wants In",
+      "rooms": [
+        "cell_block",
+        "chapel",
+        "library"
+      ],
+      "weight": 9,
+      "description": "He has heard everything through the wall. He has been extremely polite about it. He would now like to be part of it, and has made clear that the alternative is also on the table.",
+      "choices": [
+        {
+          "text": "Bring him in. Use him.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "He is useful, discreet, and — it emerges — has a cousin who drives a laundry van. He will not be coming with you. He is fine with that.",
+            "heat": -14,
+            "money": 40,
+            "note": "recruited a neighbour who had a cousin with a laundry van"
+          },
+          "success": {
+            "text": "An extra pair of hands and one more person who can ruin everything.",
+            "heat": -5,
+            "money": 15
+          },
+          "failure": {
+            "text": "He is enthusiastic, loud, and immediately tells two other people.",
+            "heat": 13
+          },
+          "crit_failure": {
+            "text": "He was never in the next cell. He was a new officer doing exactly what new officers are trained to do.",
+            "heat": 26,
+            "status": "suspicious",
+            "note": "recruited an undercover officer into the escape plan"
+          }
+        },
+        {
+          "text": "Pay him off.",
+          "cost_money": 35,
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": -2,
+          "crit_success": {
+            "text": "He takes it, keeps it quiet, and throws in the fact that the wing officer sleeps between three and five.",
+            "heat": -12,
+            "note": "learned a guard sleeps between three and five for the price of a bribe"
+          },
+          "success": {
+            "text": "Silence, purchased.",
+            "heat": -5
+          },
+          "failure": {
+            "text": "He wanted in, not paid. This has offended him.",
+            "heat": 11,
+            "status": "angry"
+          },
+          "crit_failure": {
+            "text": "He takes the money and immediately renegotiates upward, having established that you pay.",
+            "heat": 16,
+            "money": -30
+          }
+        },
+        {
+          "text": "Move the plan. Cut him out entirely.",
+          "stat": "intelligence",
+          "tags": [
+            "planning"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You rebuild the whole plan around a different route in one night and let him keep telling people about the old one.",
+            "heat": -18,
+            "note": "let an informant leak an escape plan that had already been abandoned"
+          },
+          "success": {
+            "text": "New route, new timings, and one man with outdated information.",
+            "heat": -8
+          },
+          "failure": {
+            "text": "Rebuilding a plan at short notice produces a worse plan.",
+            "heat": 7,
+            "status": "exhausted"
+          },
+          "crit_failure": {
+            "text": "The new plan has a flaw. He spots it before you do, and tells you, smugly, in front of everybody.",
+            "heat": 12,
+            "status": "angry"
+          }
+        }
+      ]
+    },
+    {
+      "id": "security_night_shift",
+      "title": "The Night Operator Is Asleep",
+      "rooms": [
+        "security"
+      ],
+      "weight": 10,
+      "min_heat": 20,
+      "description": "He is upright, his eyes are open, and he is unmistakably asleep. Twelve screens glow at nobody. His access card is clipped to his belt on a retractable cord.",
+      "choices": [
+        {
+          "text": "Take the card off the cord.",
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "stealth"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Off, swiped, cloned, and back on the cord. He never moves. He never will. He is deeply, professionally asleep.",
+            "heat": -17,
+            "note": "cloned a sleeping operator's access card and returned it"
+          },
+          "success": {
+            "text": "Card acquired. He will notice at shift end, which is hours away.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "Retractable cords retract. That is the whole idea of them.",
+            "heat": 15,
+            "status": "scared"
+          },
+          "crit_failure": {
+            "text": "The cord snaps back and hits him in the chest. He wakes up, sees you, and — worse — is now awake for the entire shift.",
+            "heat": 24
+          }
+        },
+        {
+          "text": "Use the terminal while he sleeps.",
+          "stat": "intelligence",
+          "tags": [
+            "tech"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "You add a fictional prisoner, delete a real one, and schedule a maintenance window for the east doors. All of it will hold for days.",
+            "heat": -20,
+            "money": 20,
+            "note": "invented a prisoner and deleted a real one from the prison system"
+          },
+          "success": {
+            "text": "Two doors quietly rescheduled to unlock.",
+            "heat": -9
+          },
+          "failure": {
+            "text": "The session times out and asks for a password you will never guess.",
+            "heat": 10
+          },
+          "crit_failure": {
+            "text": "Three failed password attempts locks the terminal and sends an alert. You made six.",
+            "heat": 25,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Leave. He could wake up at any second.",
+          "auto": true,
+          "success": {
+            "text": "You back out quietly. Nothing gained, nothing risked. He wakes forty seconds later and finds the room exactly as he left it, which is the best possible outcome for everyone.",
+            "heat": -4
+          }
+        }
+      ]
+    },
+    {
+      "id": "library_tutor",
+      "title": "Legal Books, And A Lot Of Time",
+      "rooms": [
+        "library",
+        "chapel"
+      ],
+      "weight": 8,
+      "max_heat": 65,
+      "description": "Nine hundred legal thrillers, forty actual law books, and a table nobody uses. It is the only room in the building where sitting still for two hours is not suspicious.",
+      "choices": [
+        {
+          "text": "Actually study. Plan the whole thing properly.",
+          "stat": "intelligence",
+          "tags": [
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Two hours of genuine planning. Routes, timings, contingencies, and a fallback for the fallback. The entire crew understands the plan for the first time.",
+            "heat": -12,
+            "heal": 2,
+            "note": "did two hours of real planning, which nobody expected to help and which did"
+          },
+          "success": {
+            "text": "The plan gets meaningfully better.",
+            "heat": -6
+          },
+          "failure": {
+            "text": "Two hours. Three arguments. No plan.",
+            "status": "exhausted",
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "You fall asleep on an open book detailing escape law and a passing officer reads over your shoulder.",
+            "heat": 18,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "File a genuine appeal. Just in case.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "planning"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The appeal is good. Alarmingly good. It will not get anybody out but it generates so much administrative attention that the wing is left alone for a week.",
+            "heat": -18,
+            "note": "filed a legal appeal purely to bury the wing in paperwork"
+          },
+          "success": {
+            "text": "Filed. It buys goodwill and a quieter corridor.",
+            "heat": -8
+          },
+          "failure": {
+            "text": "It is rejected on a technicality in under a day. Impressively fast, for this place.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "The appeal contains a detailed account of your movements, which you wrote down, in your handwriting, and handed to the authorities.",
+            "heat": 20,
+            "status": "suspicious",
+            "note": "handed a detailed account of their own movements to the authorities"
+          }
+        },
+        {
+          "text": "Hollow out a book. Hide something in it.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": -1,
+          "crit_success": {
+            "text": "Four books, four caches, spread across three shelves, catalogued by a system only you understand.",
+            "money": 25,
+            "heat": -7,
+            "note": "built a four-book contraband distribution network"
+          },
+          "success": {
+            "text": "One hollow book. Reliable, boring, effective.",
+            "heat": -3,
+            "money": 10
+          },
+          "failure": {
+            "text": "The librarian does an inventory every fortnight and it is, inevitably, fortnight.",
+            "heat": 9
+          },
+          "crit_failure": {
+            "text": "You hollow out the one book that is checked out weekly by the chaplain.",
+            "heat": 15,
+            "money": -20
+          }
+        }
+      ]
+    },
+    {
+      "id": "medical_unconscious_teammate",
+      "title": "Somebody Needs Real Help",
+      "rooms": [
+        "medical",
+        "any"
+      ],
+      "weight": 14,
+      "requires_injured": true,
+      "description": "One of yours is in a bad way and pretending not to be. This is the point where a crew either gets somebody seen or starts making excuses.",
+      "choices": [
+        {
+          "text": "Get them proper treatment. Take the risk.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "medical"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Seen, treated, and discharged with painkillers and a sincere apology from a nurse about the waiting time.",
+            "heal": 6,
+            "heat": -4,
+            "note": "got a teammate genuinely treated and apologised to"
+          },
+          "success": {
+            "text": "Patched up. Mostly. Enough.",
+            "heal": 4,
+            "heat": 3
+          },
+          "failure": {
+            "text": "The intake form asks how the injury happened. There is no good answer to that question in here.",
+            "heal": 2,
+            "heat": 12,
+            "status": "suspicious"
+          },
+          "crit_failure": {
+            "text": "The injury is recorded, investigated, and linked to an incident nobody had linked it to yet.",
+            "heal": 2,
+            "heat": 22,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Treat it yourselves. Quietly.",
+          "stat": "intelligence",
+          "tags": [
+            "medical",
+            "tech"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Clean, competent, and completely off the record. Somebody in this crew has done this before and is not saying where.",
+            "heal": 5,
+            "heat": -6,
+            "note": "performed a competent off-the-record medical procedure"
+          },
+          "success": {
+            "text": "Bandaged, splinted, and functional.",
+            "heal": 3
+          },
+          "failure": {
+            "text": "It is worse now, but privately worse, which counts for something.",
+            "damage": 1,
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "Somebody uses the word 'improvise' and then improvises.",
+            "damage": 2,
+            "status": "injured",
+            "heat": 4
+          }
+        },
+        {
+          "text": "Push on. They say they're fine.",
+          "auto": true,
+          "success": {
+            "text": "They say they're fine. They are visibly not fine. Everybody agrees to believe them, which is the crew's greatest talent and its most reliable mistake.",
+            "damage": 1,
+            "status": "exhausted",
+            "heat": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "yard_visit_day",
+      "title": "Visiting Hours",
+      "rooms": [
+        "yard",
+        "cafeteria",
+        "chapel"
+      ],
+      "weight": 9,
+      "max_heat": 75,
+      "description": "Families, lawyers, and one man who visits every week and is nobody's family. The whole wing is distracted and the staff are spread thin across three rooms.",
+      "choices": [
+        {
+          "text": "Get something brought in.",
+          "stat": "charisma",
+          "tags": [
+            "social"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "Cash, a phone, a map printed off the internet, and a sandwich. The sandwich is the part everybody talks about afterwards.",
+            "money": 75,
+            "heat": -6,
+            "note": "successfully smuggled in a phone, a map, and a much-discussed sandwich"
+          },
+          "success": {
+            "text": "Money in, and a message out.",
+            "money": 40,
+            "heat": 2
+          },
+          "failure": {
+            "text": "The visits room has more cameras than the security hub. Everybody forgets this. Everybody.",
+            "heat": 14
+          },
+          "crit_failure": {
+            "text": "The handover is caught on camera in high definition and from two angles.",
+            "heat": 24,
+            "money": -20,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Use the thin staffing. Move while they're all in there.",
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "Three corridors, two doors, and one storeroom, all completely unobserved for ninety minutes.",
+            "heat": -14,
+            "note": "had ninety unobserved minutes because of visiting hours"
+          },
+          "success": {
+            "text": "A good clean window of movement.",
+            "heat": -7
+          },
+          "failure": {
+            "text": "They pull staff from the towers, not the corridors. You had that backwards.",
+            "heat": 11
+          },
+          "crit_failure": {
+            "text": "You walk into the visits room by accident, in front of forty families and a lawyer who recognises you.",
+            "heat": 19,
+            "status": "scared"
+          }
+        },
+        {
+          "text": "Talk to the man who visits nobody.",
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "social"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "He is waiting for somebody who was released in 2016 and has kept coming out of habit. He also has a car and nowhere to be.",
+            "money": 50,
+            "heat": -12,
+            "note": "found a man with a car who has been visiting a released prisoner since 2016"
+          },
+          "success": {
+            "text": "A strange conversation and a genuinely useful phone number.",
+            "money": 25,
+            "heat": -4
+          },
+          "failure": {
+            "text": "He does not speak. He has not spoken in some years. He simply visits.",
+            "heat": 3
+          },
+          "crit_failure": {
+            "text": "He is police. He has been sitting in that room for nine months waiting for exactly this conversation.",
+            "heat": 28,
+            "status": "suspicious",
+            "note": "struck up a friendly conversation with an undercover officer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maintenance_flood",
+      "title": "A Pipe Has Been Leaking For Weeks",
+      "rooms": [
+        "maintenance",
+        "sewer",
+        "laundry"
+      ],
+      "weight": 10,
+      "description": "The corridor floor is soft. Under it, judging by the sound, is not more floor. Somebody's maintenance ticket has been open since February.",
+      "choices": [
+        {
+          "text": "Dig. It's practically asking.",
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "tunnel"
+          ],
+          "difficulty": 1,
+          "crit_success": {
+            "text": "The floor gives onto a service void that runs the length of the block and has not been entered since the building was put up.",
+            "heat": -16,
+            "note": "opened a service void that had been sealed since construction"
+          },
+          "success": {
+            "text": "A hole, a drop, and a crawlspace. Filthy, but real.",
+            "heat": -6,
+            "damage": 1
+          },
+          "failure": {
+            "text": "Under the soft floor is a great deal of water and one very hard floor.",
+            "damage": 2,
+            "heat": 8
+          },
+          "crit_failure": {
+            "text": "You breach the pipe properly. The corridor becomes a feature. Maintenance arrives within the hour, which is the fastest they have ever moved.",
+            "heat": 22,
+            "damage": 2,
+            "note": "turned a maintenance corridor into a permanent water feature"
+          }
+        },
+        {
+          "text": "Report it. Get maintenance to open the floor for you.",
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "planning"
+          ],
+          "difficulty": 0,
+          "crit_success": {
+            "text": "They open the floor, work for two days, and leave the panel off over the weekend. You did not lift a finger.",
+            "heat": -19,
+            "note": "got the prison to excavate their escape route for them"
+          },
+          "success": {
+            "text": "They open it. They will close it Monday. It is Thursday.",
+            "heat": -8
+          },
+          "failure": {
+            "text": "The ticket joins the other ticket. Both tickets will be reviewed in the spring.",
+            "heat": 2
+          },
+          "crit_failure": {
+            "text": "They ask why a prisoner is so interested in the floor. It is a fair question and you do not have a fair answer.",
+            "heat": 16,
+            "status": "suspicious"
+          }
+        },
+        {
+          "text": "Leave it and note it for the escape.",
+          "auto": true,
+          "success": {
+            "text": "You mark it, say nothing, and walk on. It will still be soft on the night. Almost nothing in this building gets fixed, and for once that is good news.",
+            "heat": -6,
+            "note": "identified a soft floor and had the discipline to leave it alone"
+          }
+        }
+      ]
+    }
+  ]
+}

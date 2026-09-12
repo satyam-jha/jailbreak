@@ -1,0 +1,27 @@
+{
+  "_readme": "Room types used by the procedural prison generator (scripts/systems/prison_generator.gd). 'affinity' nudges which stat tends to matter there, 'danger' scales heat/damage, 'color' drives the map node art. Add a room by copying a block; add matching events in events.json with the same room id.",
+
+  "rooms": [
+    { "id": "cell_block",   "name": "Cell Block",    "icon": "bars",    "color": "#5b6478", "danger": 1, "affinity": ["stealth"],               "tags": ["indoor"],            "blurb": "Four hundred men pretending to be asleep." },
+    { "id": "cafeteria",    "name": "Cafeteria",     "icon": "tray",    "color": "#7d6a4f", "danger": 1, "affinity": ["charisma", "strength"],  "tags": ["indoor", "social"],  "blurb": "Loud, crowded, and legally not food." },
+    { "id": "yard",         "name": "The Yard",      "icon": "sun",     "color": "#5f7f55", "danger": 2, "affinity": ["speed", "charisma"],     "tags": ["outdoor", "social"], "blurb": "Open sky, open sightlines, open hostility." },
+    { "id": "laundry",      "name": "Laundry",       "icon": "shirt",   "color": "#6e7f96", "danger": 1, "affinity": ["stealth"],               "tags": ["indoor", "cover"],   "blurb": "Steam, noise, and an excellent number of places to not be." },
+    { "id": "workshop",     "name": "Workshop",      "icon": "wrench",  "color": "#8a6338", "danger": 2, "affinity": ["strength", "intelligence"], "tags": ["indoor", "tools"], "blurb": "Tools they should not have left out. They left them out." },
+    { "id": "medical",      "name": "Medical Wing",  "icon": "cross",   "color": "#a8b7c4", "danger": 1, "affinity": ["intelligence"],          "tags": ["indoor", "medical"], "blurb": "Where injuries go to become slightly different injuries." },
+    { "id": "guard_station","name": "Guard Station", "icon": "badge",   "color": "#4a5c86", "danger": 3, "affinity": ["charisma", "stealth"],   "tags": ["indoor", "guards"],  "blurb": "Coffee, keys, and eleven people paid to look at you." },
+    { "id": "security",     "name": "Security Hub",  "icon": "screen",  "color": "#3f4f6b", "danger": 3, "affinity": ["intelligence"],          "tags": ["indoor", "tech"],    "blurb": "Every camera in the building, and one very bored operator." },
+    { "id": "maintenance",  "name": "Maintenance",   "icon": "gear",    "color": "#6b6257", "danger": 2, "affinity": ["intelligence", "strength"], "tags": ["indoor", "tech"], "blurb": "Pipes, panels, and a ceiling that is more suggestion than structure." },
+    { "id": "sewer",        "name": "The Sewer",     "icon": "pipe",    "color": "#4e5c4a", "danger": 2, "affinity": ["strength", "stealth"],   "tags": ["tunnel", "gross"],   "blurb": "It smells like a decision you are about to regret." },
+    { "id": "library",      "name": "Prison Library","icon": "book",    "color": "#7a5f7e", "danger": 1, "affinity": ["intelligence", "luck"],  "tags": ["indoor", "quiet"],   "blurb": "Nine hundred legal thrillers and one very specific blueprint." },
+    { "id": "chapel",       "name": "Chapel",        "icon": "candle",  "color": "#8a7550", "danger": 1, "affinity": ["charisma", "luck"],      "tags": ["indoor", "quiet"],   "blurb": "Quiet, unguarded, and full of people making promises." },
+    { "id": "outer_wall",   "name": "Outer Wall",    "icon": "wall",    "color": "#8b4a3f", "danger": 4, "affinity": ["speed", "strength"],     "tags": ["outdoor", "final"],  "blurb": "Forty feet of concrete and the last bad idea you will have here." }
+  ],
+
+  "heat_bands": [
+    { "min": 0,  "max": 25,  "name": "RELAXED",   "color": "#5fb878", "flavor": "The guards are discussing a television programme." },
+    { "min": 26, "max": 50,  "name": "SUSPICIOUS","color": "#d8c44a", "flavor": "Someone has started counting people." },
+    { "min": 51, "max": 75,  "name": "HEIGHTENED","color": "#e08c3a", "flavor": "Extra patrols. The good torches are out." },
+    { "min": 76, "max": 90,  "name": "HIGH ALERT","color": "#d9534f", "flavor": "Dogs. There were never dogs before." },
+    { "min": 91, "max": 100, "name": "LOCKDOWN",  "color": "#8b2c28", "flavor": "Every door in the building just agreed on something." }
+  ]
+}

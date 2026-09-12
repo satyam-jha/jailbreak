@@ -1,0 +1,248 @@
+{
+  "_readme": "Traits are the heart of the game. Add one by copying a block and giving it a new id. 'effects' are interpreted generically by scripts/systems/skill_check.gd and scripts/systems/effect_resolver.gd - see docs/CONTENT_EDITING.md for every legal effect type. 'contexts' match the tags on an encounter choice; an empty list means 'always applies'.",
+
+  "traits": [
+    {
+      "id": "strong_as_hell",
+      "name": "Strong as Hell",
+      "description": "+2 Strength on anything involving pushing, pulling, or ruining a door.",
+      "polarity": "positive",
+      "tags": ["strength"],
+      "effects": [ { "type": "stat_bonus", "stat": "strength", "value": 2, "contexts": ["physical"] } ]
+    },
+    {
+      "id": "butterfingers",
+      "name": "Butterfingers",
+      "description": "Failed actions have a nasty habit of also costing money.",
+      "polarity": "negative",
+      "tags": ["chaos"],
+      "effects": [ { "type": "money_on_fail", "value": -12, "chance": 45 } ]
+    },
+    {
+      "id": "nobody_suspects_grandma",
+      "name": "Nobody Suspects Grandma",
+      "description": "Generates far less Heat on social and stealth work. Who would suspect?",
+      "polarity": "positive",
+      "tags": ["social", "stealth"],
+      "effects": [
+        { "type": "heat_on_fail", "value": -6, "contexts": ["social", "stealth"] },
+        { "type": "check_bonus", "value": 8, "contexts": ["social"] }
+      ]
+    },
+    {
+      "id": "keyboard_warrior",
+      "name": "Keyboard Warrior",
+      "description": "+2 Intelligence on anything with a screen, a cable, or a beep.",
+      "polarity": "positive",
+      "tags": ["tech"],
+      "effects": [ { "type": "stat_bonus", "stat": "intelligence", "value": 2, "contexts": ["tech"] } ]
+    },
+    {
+      "id": "loudmouth",
+      "name": "Loudmouth",
+      "description": "Social actions hit harder. Social failures are heard three floors up.",
+      "polarity": "negative",
+      "tags": ["social", "chaos"],
+      "effects": [
+        { "type": "check_bonus", "value": 10, "contexts": ["social"] },
+        { "type": "heat_on_fail", "value": 9 }
+      ]
+    },
+    {
+      "id": "lucky_idiot",
+      "name": "Lucky Idiot",
+      "description": "Sometimes converts a clean failure into an unearned success.",
+      "polarity": "positive",
+      "tags": ["luck", "chaos"],
+      "effects": [ { "type": "save_chance", "value": 25 } ]
+    },
+    {
+      "id": "claustrophobic",
+      "name": "Claustrophobic",
+      "description": "Significantly worse in tunnels, vents, and anything shaped like a coffin.",
+      "polarity": "negative",
+      "tags": ["stealth"],
+      "effects": [ { "type": "check_bonus", "value": -18, "contexts": ["tunnel"] } ]
+    },
+    {
+      "id": "professional_liar",
+      "name": "Professional Liar",
+      "description": "+2 Charisma when deceiving, which is most of the time.",
+      "polarity": "positive",
+      "tags": ["social"],
+      "effects": [ { "type": "stat_bonus", "stat": "charisma", "value": 2, "contexts": ["social", "deception"] } ]
+    },
+    {
+      "id": "walking_alarm",
+      "name": "Walking Alarm",
+      "description": "Generates extra Heat on absolutely everything. Squeaky shoes.",
+      "polarity": "negative",
+      "tags": ["chaos"],
+      "effects": [ { "type": "heat_on_success", "value": 3 }, { "type": "heat_on_fail", "value": 5 } ]
+    },
+    {
+      "id": "gym_bro",
+      "name": "Gym Bro",
+      "description": "Permanently gains Strength after each successful physical action. Gains.",
+      "polarity": "positive",
+      "tags": ["strength"],
+      "effects": [ { "type": "grow_stat", "stat": "strength", "value": 1, "on": "success", "contexts": ["physical"], "chance": 55 } ]
+    },
+    {
+      "id": "knows_a_guy",
+      "name": "Knows a Guy",
+      "description": "Successful actions occasionally shake loose some cash.",
+      "polarity": "positive",
+      "tags": ["social", "luck"],
+      "effects": [ { "type": "money_on_success", "value": 18, "chance": 50 } ]
+    },
+    {
+      "id": "greased_up",
+      "name": "Greased Up",
+      "description": "+2 Stealth and +1 Speed. Impossible to hold onto. Unpleasant to be near.",
+      "polarity": "positive",
+      "tags": ["stealth", "speed"],
+      "effects": [
+        { "type": "stat_bonus", "stat": "stealth", "value": 2, "contexts": ["stealth"] },
+        { "type": "stat_bonus", "stat": "speed", "value": 1, "contexts": ["speed"] }
+      ]
+    },
+    {
+      "id": "iron_stomach",
+      "name": "Iron Stomach",
+      "description": "Takes one less point of damage from everything, including the cafeteria.",
+      "polarity": "positive",
+      "tags": ["strength"],
+      "effects": [ { "type": "damage_taken", "value": -1 } ]
+    },
+    {
+      "id": "overconfident",
+      "name": "Overconfident",
+      "description": "Bigger critical successes. Also bigger critical disasters.",
+      "polarity": "negative",
+      "tags": ["chaos"],
+      "effects": [
+        { "type": "crit_success_chance", "value": 8 },
+        { "type": "crit_fail_chance", "value": 10 }
+      ]
+    },
+    {
+      "id": "knows_the_building",
+      "name": "Knows the Building",
+      "description": "+10% on every check performed indoors. Which is all of them. He's a janitor.",
+      "polarity": "positive",
+      "tags": ["tech", "stealth"],
+      "effects": [ { "type": "check_bonus", "value": 10 } ]
+    },
+    {
+      "id": "brittle",
+      "name": "Brittle",
+      "description": "Takes one extra point of damage. Made largely of cartilage and regret.",
+      "polarity": "negative",
+      "tags": ["weak"],
+      "effects": [ { "type": "damage_taken", "value": 1 } ]
+    },
+    {
+      "id": "slippery_customer",
+      "name": "Slippery Customer",
+      "description": "Critical failures are far less likely. Somehow always lands on his feet.",
+      "polarity": "positive",
+      "tags": ["luck", "stealth"],
+      "effects": [ { "type": "crit_fail_chance", "value": -12 } ]
+    },
+    {
+      "id": "night_owl",
+      "name": "Night Owl",
+      "description": "+15% on checks once the prison is on High Alert. Thrives in chaos.",
+      "polarity": "positive",
+      "tags": ["stealth", "chaos"],
+      "effects": [ { "type": "check_bonus", "value": 15, "min_heat": 60 } ]
+    },
+    {
+      "id": "morning_person",
+      "name": "Morning Person",
+      "description": "+12% on checks while Heat is low. Falls apart under pressure.",
+      "polarity": "neutral",
+      "tags": ["social"],
+      "effects": [ { "type": "check_bonus", "value": 12, "max_heat": 40 } ]
+    },
+    {
+      "id": "medically_trained",
+      "name": "Medically Trained",
+      "description": "+3 Intelligence on medical work. Heals a little of everyone's dignity.",
+      "polarity": "positive",
+      "tags": ["tech", "medical"],
+      "effects": [ { "type": "stat_bonus", "stat": "intelligence", "value": 3, "contexts": ["medical"] } ]
+    },
+    {
+      "id": "born_in_a_tunnel",
+      "name": "Born in a Tunnel",
+      "description": "+20% on anything underground. Deeply strange about it.",
+      "polarity": "positive",
+      "tags": ["stealth", "strength"],
+      "effects": [ { "type": "check_bonus", "value": 20, "contexts": ["tunnel"] } ]
+    },
+    {
+      "id": "kleptomaniac",
+      "name": "Kleptomaniac",
+      "description": "Steals something on every success. Steals something on every failure too.",
+      "polarity": "neutral",
+      "tags": ["chaos", "stealth"],
+      "effects": [
+        { "type": "money_on_success", "value": 14, "chance": 70 },
+        { "type": "heat_on_fail", "value": 6 }
+      ]
+    },
+    {
+      "id": "unreasonably_calm",
+      "name": "Unreasonably Calm",
+      "description": "Reduces all Heat this character generates by a quarter. Nothing fazes him.",
+      "polarity": "positive",
+      "tags": ["stealth", "social"],
+      "effects": [ { "type": "heat_multiplier", "value": -0.3 } ]
+    },
+    {
+      "id": "bad_knees",
+      "name": "Bad Knees",
+      "description": "-2 Speed. Will mention the knees at every opportunity.",
+      "polarity": "negative",
+      "tags": ["weak"],
+      "effects": [ { "type": "stat_bonus", "stat": "speed", "value": -2, "contexts": [] } ]
+    },
+    {
+      "id": "eats_anything",
+      "name": "Eats Anything",
+      "description": "Critical successes become more common. Nobody understands why.",
+      "polarity": "neutral",
+      "tags": ["chaos", "luck"],
+      "effects": [ { "type": "crit_success_chance", "value": 10 } ]
+    },
+    {
+      "id": "tattooed_map",
+      "name": "Tattooed Map",
+      "description": "Has the prison layout on his back. +12% on technical and planning checks.",
+      "polarity": "positive",
+      "tags": ["tech"],
+      "effects": [ { "type": "check_bonus", "value": 12, "contexts": ["tech", "planning"] } ]
+    },
+    {
+      "id": "allergic_to_guards",
+      "name": "Allergic to Guards",
+      "description": "Sneezes near authority. -12% on social checks, and everyone hears it.",
+      "polarity": "negative",
+      "tags": ["weak"],
+      "effects": [ { "type": "check_bonus", "value": -12, "contexts": ["social"] }, { "type": "heat_on_fail", "value": 4 } ]
+    },
+    {
+      "id": "fast_hands",
+      "name": "Fast Hands",
+      "description": "+2 Speed and +1 Stealth on anything requiring a quick grab.",
+      "polarity": "positive",
+      "tags": ["speed", "stealth"],
+      "effects": [
+        { "type": "stat_bonus", "stat": "speed", "value": 2, "contexts": ["speed", "stealth"] },
+        { "type": "stat_bonus", "stat": "stealth", "value": 1, "contexts": ["stealth"] }
+      ]
+    }
+  ]
+}

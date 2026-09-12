@@ -1,0 +1,37 @@
+{
+  "_readme": "Party synergies are matched against the TAGS on characters and their traits, not against specific character ids - so they keep working when you rewrite the whole cast. 'requires_tags' needs at least 'count' distinct crew members carrying that tag. Bonuses apply to checks whose choice carries one of 'contexts' (empty = all checks).",
+
+  "synergies": [
+    { "id": "brains_trust",   "name": "Brains Trust",       "requires_tags": ["tech"],      "count": 2, "bonus": 12, "contexts": ["tech", "planning"],
+      "description": "Two technical minds. +12% on technical and planning work.",
+      "flavor": "They argue constantly and are right constantly." },
+    { "id": "muscle",         "name": "The Heavy Lifting",  "requires_tags": ["strength"],  "count": 2, "bonus": 12, "contexts": ["physical"],
+      "description": "Two heavy hitters. +12% on physical work.",
+      "flavor": "Between them they can move anything except each other." },
+    { "id": "smooth_operators","name": "Smooth Operators",  "requires_tags": ["social"],    "count": 2, "bonus": 12, "contexts": ["social", "deception"],
+      "description": "Two talkers. +12% on social work.",
+      "flavor": "One distracts, one closes. Neither has ever admitted which is which." },
+    { "id": "shadow_crew",    "name": "Shadow Crew",        "requires_tags": ["stealth"],   "count": 2, "bonus": 12, "contexts": ["stealth", "tunnel"],
+      "description": "Two ghosts. +12% on stealth work.",
+      "flavor": "Nobody can confirm they were ever in the room." },
+    { "id": "blessed_mess",   "name": "Blessed Mess",       "requires_tags": ["luck"],      "count": 2, "bonus": 8,  "contexts": [],
+      "description": "Two absurdly lucky people. +8% on everything.",
+      "flavor": "Statistically offensive." },
+    { "id": "chaos_engine",   "name": "Chaos Engine",       "requires_tags": ["chaos"],     "count": 2, "bonus": 0,  "contexts": [],
+      "crit_success_bonus": 10, "crit_fail_bonus": 6,
+      "description": "Two agents of chaos. Criticals of both kinds become far more likely.",
+      "flavor": "Nothing this crew does will ever be described as 'fine'." },
+    { "id": "field_hospital", "name": "Field Hospital",     "requires_tags": ["medical"],   "count": 1, "bonus": 15, "contexts": ["medical"],
+      "description": "Somebody here knows medicine. +15% on medical work.",
+      "flavor": "Qualified for something, at least." },
+    { "id": "quick_feet",     "name": "Quick Feet",         "requires_tags": ["speed"],     "count": 2, "bonus": 12, "contexts": ["speed"],
+      "description": "Two fast movers. +12% on anything timed.",
+      "flavor": "They race each other to things. It is exhausting for everybody." },
+    { "id": "balanced_crew",  "name": "A Balanced Crew",    "requires_distinct_tags": ["strength", "tech", "social", "stealth"], "bonus": 10, "contexts": [],
+      "description": "Every discipline covered. +10% on everything.",
+      "flavor": "Somebody actually planned this. Nobody will admit to it." },
+    { "id": "all_in_one_lane","name": "All In One Lane",    "requires_tags": ["strength"],  "count": 4, "bonus": 18, "contexts": ["physical"], "penalty": -10, "penalty_contexts": ["tech", "social"],
+      "description": "Four heavies. Outstanding at force, dismal at everything else.",
+      "flavor": "The plan has one step and it is 'push'." }
+  ]
+}

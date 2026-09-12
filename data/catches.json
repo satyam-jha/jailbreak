@@ -1,0 +1,80 @@
+{
+  "_readme": "The hidden catches. Exactly one of the five offered power-ups gets one of these attached at random, and the player is not told which. When 'trigger' fires, the catch is revealed with 'reveal_text' and 'effects' are applied. Triggers: immediate, next_encounter, on_fail (first failed check), on_crit_fail, delayed (uses 'after' rooms), at_escape, on_heat_above (uses 'threshold'), on_room_enter. Keep these funny rather than purely punitive - a catch the player laughs at is a catch they will risk again.",
+
+  "catches": [
+    { "id": "counterfeit",     "trigger": "delayed", "after": 2,
+      "hint_after": "Somebody in the crew keeps looking at the money.",
+      "reveal_text": "The money was counterfeit. Extremely counterfeit. One of the notes has the wrong monarch and two of them are the same serial number. The crew spent most of it before noticing.",
+      "effects": [ { "type": "money", "value": -70 }, { "type": "heat", "value": 10 } ] },
+
+    { "id": "overconfidence",  "trigger": "next_encounter",
+      "hint_after": "Everybody is walking slightly differently now.",
+      "reveal_text": "The upgrade has gone to everyone's head. The crew is now strutting. In a prison. Visibly. Guards notice strutting.",
+      "effects": [ { "type": "heat", "value": 18 }, { "type": "crit_fail_chance", "value": 10 } ] },
+
+    { "id": "upside_down_map", "trigger": "immediate",
+      "hint_after": "",
+      "reveal_text": "The map is upside down. It has been upside down this entire time. Nobody wants to say who worked it out first, or how long it took.",
+      "effects": [ { "type": "check_bonus", "value": -10, "contexts": ["planning", "tech"] }, { "type": "heat", "value": 6 } ] },
+
+    { "id": "it_opens_nothing","trigger": "at_escape",
+      "hint_after": "",
+      "reveal_text": "The key opens something. It opens a locker in a staff changing room on the other side of the building. Inside the locker is a coat. It is not even a good coat.",
+      "effects": [ { "type": "escape_bonus", "value": -15 } ] },
+
+    { "id": "medical_bill",    "trigger": "delayed", "after": 1,
+      "hint_after": "Somebody has started keeping a small notebook.",
+      "reveal_text": "The medical supplies were not free. They were on account. The account has been called in, and the person calling it in works in the kitchens and has a very long memory.",
+      "effects": [ { "type": "money", "value": -60 } ] },
+
+    { "id": "loud_equipment",  "trigger": "on_fail",
+      "hint_after": "There is a faint rattling whenever anybody moves.",
+      "reveal_text": "The equipment rattles. Not much. Just enough that the one time it mattered, it mattered enormously.",
+      "effects": [ { "type": "heat", "value": 22 } ] },
+
+    { "id": "allergic",        "trigger": "delayed", "after": 1,
+      "hint_after": "Two people are sneezing.",
+      "reveal_text": "Somebody in the crew is violently allergic to it. Nobody knew. They are handling it with tremendous dignity and absolutely no success.",
+      "effects": [ { "type": "damage", "value": 3 }, { "type": "status", "value": "exhausted" } ] },
+
+    { "id": "it_was_marked",   "trigger": "on_heat_above", "threshold": 55,
+      "hint_after": "",
+      "reveal_text": "It was marked. There is a small dye tag sewn into the lining, which has been quietly reporting your whereabouts to a laundry supervisor since the moment you took it.",
+      "effects": [ { "type": "heat", "value": 25 } ] },
+
+    { "id": "wrong_size",      "trigger": "immediate",
+      "hint_after": "",
+      "reveal_text": "It does not fit. Not even slightly. The crew has agreed to share it, which means at any given moment four fifths of the crew do not have it.",
+      "effects": [ { "type": "stat_bonus", "stat": "speed", "value": -2 } ] },
+
+    { "id": "owes_a_favour",   "trigger": "at_escape",
+      "hint_after": "Somebody keeps saying a name nobody recognises.",
+      "reveal_text": "It came from Terrence. Terrence would like a word. Terrence would like a word specifically now, on the night, at the wall, and Terrence is not a patient man.",
+      "effects": [ { "type": "escape_bonus", "value": -12 }, { "type": "heat", "value": 15 } ] },
+
+    { "id": "attracts_attention","trigger": "on_room_enter",
+      "hint_after": "People keep looking over.",
+      "reveal_text": "It is far too nice. Nobody in this building owns anything this nice. Every single person who sees it forms an immediate and lasting opinion.",
+      "effects": [ { "type": "heat_per_room", "value": 6 } ] },
+
+    { "id": "already_missed",  "trigger": "next_encounter",
+      "hint_after": "",
+      "reveal_text": "It has already been reported missing. The report was filed eleven minutes after you took it, which is a new facility record, and somebody is extremely proud of that.",
+      "effects": [ { "type": "heat", "value": 20 }, { "type": "money", "value": -25 } ] },
+
+    { "id": "shared_credit",   "trigger": "on_crit_fail",
+      "hint_after": "",
+      "reveal_text": "It works. It works so well that somebody else noticed, took credit for it, and is now doing the same thing two wings over with considerably less discretion.",
+      "effects": [ { "type": "heat", "value": 26 } ] },
+
+    { "id": "one_use_only",    "trigger": "delayed", "after": 3,
+      "hint_after": "It has started making a noise.",
+      "reveal_text": "It was single use. Nobody said it was single use. It is, in fairness, extremely obviously single use in hindsight, and it has now been used.",
+      "effects": [ { "type": "cancel_powerup" } ] },
+
+    { "id": "crew_dispute",    "trigger": "delayed", "after": 2,
+      "hint_after": "Two people have stopped speaking to each other.",
+      "reveal_text": "There is only one of it and there are five of them. The argument about whose it is has lasted four days and has now become about something else entirely.",
+      "effects": [ { "type": "status", "value": "angry" }, { "type": "check_bonus", "value": -8, "contexts": [] } ] }
+  ]
+}

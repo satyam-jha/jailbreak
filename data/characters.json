@@ -1,0 +1,944 @@
+{
+  "_readme": "The starting cast. Change any name, stat, trait id or line of dialogue here and the game picks it up on next launch - no code changes needed. Stats run 1-10. 'traits' must reference ids in traits.json. 'visual' drives the procedurally drawn portrait (scripts/ui/character_portrait.gd); every field has a safe fallback, so a typo degrades gracefully instead of crashing.",
+  "stat_keys": [
+    "strength",
+    "intelligence",
+    "stealth",
+    "charisma",
+    "luck",
+    "speed"
+  ],
+  "characters": [
+    {
+      "id": "big_dave",
+      "name": "Big Dave",
+      "nickname": "The Wall",
+      "description": "Six foot eight of confident misunderstanding. Solves every problem the same way and is undefeated at it.",
+      "stats": {
+        "strength": 10,
+        "intelligence": 2,
+        "stealth": 3,
+        "charisma": 5,
+        "luck": 6,
+        "speed": 5
+      },
+      "max_health": 12,
+      "traits": [
+        "strong_as_hell",
+        "gym_bro",
+        "walking_alarm"
+      ],
+      "tags": [
+        "strength",
+        "chaos"
+      ],
+      "quips": {
+        "success": [
+          "Big Dave nods once, as if he planned that.",
+          "Big Dave did not know it would work. Big Dave is not surprised."
+        ],
+        "failure": [
+          "Big Dave looks at his hands, betrayed.",
+          "Big Dave has decided the wall started it."
+        ]
+      },
+      "visual": {
+        "body": "huge",
+        "skin": "#e0a878",
+        "hair": "buzz",
+        "hair_color": "#3b2b1d",
+        "beard": "stubble",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "beady",
+        "brow": "normal",
+        "extra": "tattoo"
+      }
+    },
+    {
+      "id": "professor",
+      "name": "The Professor",
+      "nickname": "Tenure Denied",
+      "description": "Convicted of an insurance fraud so elegant the jury applauded. Cannot open a jar.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 10,
+        "stealth": 6,
+        "charisma": 6,
+        "luck": 4,
+        "speed": 4
+      },
+      "max_health": 9,
+      "traits": [
+        "tattooed_map",
+        "brittle",
+        "professional_liar"
+      ],
+      "tags": [
+        "tech",
+        "planning"
+      ],
+      "quips": {
+        "success": [
+          "The Professor explains why it worked. At length.",
+          "\"As predicted,\" says the Professor, who did not predict it."
+        ],
+        "failure": [
+          "The Professor blames the methodology.",
+          "The Professor requests a peer review of what just happened."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#d8b08c",
+        "hair": "receding",
+        "hair_color": "#9aa3ad",
+        "beard": "goatee",
+        "glasses": "round",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "tired",
+        "brow": "raised",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "grandma_ruth",
+      "name": "Grandma Ruth",
+      "nickname": "Nana Nine Fingers",
+      "description": "In for tax evasion across four decades and six identities. Brings snacks to the heist.",
+      "stats": {
+        "strength": 2,
+        "intelligence": 7,
+        "stealth": 7,
+        "charisma": 10,
+        "luck": 8,
+        "speed": 2
+      },
+      "max_health": 8,
+      "traits": [
+        "nobody_suspects_grandma",
+        "professional_liar",
+        "bad_knees"
+      ],
+      "tags": [
+        "social",
+        "luck"
+      ],
+      "quips": {
+        "success": [
+          "Grandma Ruth pats the guard's cheek and walks straight through.",
+          "Grandma Ruth has been doing this since before the guard was born."
+        ],
+        "failure": [
+          "Grandma Ruth pretends to be confused. It does not take this time.",
+          "Grandma Ruth blames her hip and is escorted away, furious."
+        ]
+      },
+      "visual": {
+        "body": "short",
+        "skin": "#eccaa8",
+        "hair": "bun",
+        "hair_color": "#d8dde3",
+        "beard": "none",
+        "glasses": "square",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "raised",
+        "extra": "earring"
+      }
+    },
+    {
+      "id": "sockets",
+      "name": "Sockets",
+      "nickname": "Ctrl Alt Defeat",
+      "description": "Took down a city's parking meter network for reasons he still describes as 'principled'.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 10,
+        "stealth": 6,
+        "charisma": 3,
+        "luck": 5,
+        "speed": 6
+      },
+      "max_health": 9,
+      "traits": [
+        "keyboard_warrior",
+        "allergic_to_guards",
+        "night_owl"
+      ],
+      "tags": [
+        "tech"
+      ],
+      "quips": {
+        "success": [
+          "Sockets does not look up from the panel.",
+          "Sockets says \"obviously\" to nobody."
+        ],
+        "failure": [
+          "Sockets insists the system is wrong, not him.",
+          "Sockets has bricked something. Possibly two somethings."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#c9925f",
+        "hair": "messy",
+        "hair_color": "#1f1a17",
+        "beard": "none",
+        "glasses": "square",
+        "hat": "beanie",
+        "uniform": "#e2761f",
+        "eyes": "sharp",
+        "brow": "worried",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "vinnie_lawyer",
+      "name": "Vinnie Salerno",
+      "nickname": "The Lawyer",
+      "description": "Disbarred for a conflict of interest involving himself, his client, and a boat.",
+      "stats": {
+        "strength": 4,
+        "intelligence": 7,
+        "stealth": 3,
+        "charisma": 10,
+        "luck": 5,
+        "speed": 4
+      },
+      "max_health": 10,
+      "traits": [
+        "professional_liar",
+        "knows_a_guy",
+        "loudmouth"
+      ],
+      "tags": [
+        "social"
+      ],
+      "quips": {
+        "success": [
+          "Vinnie calls it a settlement.",
+          "Vinnie would like the record to show that worked."
+        ],
+        "failure": [
+          "Vinnie files an objection. It is overruled physically.",
+          "Vinnie says the word \"technically\" and is ignored."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#dda870",
+        "hair": "slick",
+        "hair_color": "#2b2320",
+        "beard": "mustache",
+        "glasses": "shades",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "sharp",
+        "brow": "raised",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "chad",
+      "name": "Chad Thunderquad",
+      "nickname": "Leg Day",
+      "description": "Arrested during a protein heist. Has never once skipped, and will tell you so.",
+      "stats": {
+        "strength": 9,
+        "intelligence": 4,
+        "stealth": 3,
+        "charisma": 6,
+        "luck": 4,
+        "speed": 8
+      },
+      "max_health": 12,
+      "traits": [
+        "gym_bro",
+        "overconfident"
+      ],
+      "tags": [
+        "strength",
+        "speed"
+      ],
+      "quips": {
+        "success": [
+          "Chad flexes at the security camera.",
+          "Chad calls it a new personal best."
+        ],
+        "failure": [
+          "Chad blames his pre-workout.",
+          "Chad pulled something. Chad pulled several things."
+        ]
+      },
+      "visual": {
+        "body": "wide",
+        "skin": "#e8b070",
+        "hair": "spiky",
+        "hair_color": "#c9a227",
+        "beard": "stubble",
+        "glasses": "shades",
+        "hat": "headband",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "normal",
+        "extra": "tattoo"
+      }
+    },
+    {
+      "id": "fingers",
+      "name": "Fingers Malone",
+      "nickname": "Eleven Fingers",
+      "description": "Nobody has ever proven anything. Nobody has ever found their wallet, either.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 6,
+        "stealth": 9,
+        "charisma": 4,
+        "luck": 8,
+        "speed": 7
+      },
+      "max_health": 9,
+      "traits": [
+        "fast_hands",
+        "kleptomaniac",
+        "butterfingers"
+      ],
+      "tags": [
+        "stealth",
+        "luck"
+      ],
+      "quips": {
+        "success": [
+          "Fingers already has whatever it was.",
+          "Fingers was never here. Fingers has receipts proving it."
+        ],
+        "failure": [
+          "Fingers drops everything. Loudly. In sequence.",
+          "Fingers is caught holding three things he cannot explain."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#b5784a",
+        "hair": "short",
+        "hair_color": "#1c1512",
+        "beard": "none",
+        "glasses": "none",
+        "hat": "cap",
+        "uniform": "#e2761f",
+        "eyes": "sharp",
+        "brow": "normal",
+        "extra": "freckles"
+      }
+    },
+    {
+      "id": "silky_pete",
+      "name": "Silky Pete",
+      "nickname": "The Third Cousin",
+      "description": "Sold the same timeshare to eleven people, four of whom are still grateful.",
+      "stats": {
+        "strength": 4,
+        "intelligence": 6,
+        "stealth": 5,
+        "charisma": 9,
+        "luck": 5,
+        "speed": 4
+      },
+      "max_health": 9,
+      "traits": [
+        "professional_liar",
+        "unreasonably_calm"
+      ],
+      "tags": [
+        "social",
+        "stealth"
+      ],
+      "quips": {
+        "success": [
+          "Silky Pete has made a new friend and a small profit.",
+          "Silky Pete never raised his voice once."
+        ],
+        "failure": [
+          "Silky Pete's story develops a hole. Then several.",
+          "Silky Pete is politely asked for identification."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#8b5a3c",
+        "hair": "slick",
+        "hair_color": "#171310",
+        "beard": "goatee",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "raised",
+        "extra": "earring"
+      }
+    },
+    {
+      "id": "janitor_hank",
+      "name": "Hank",
+      "nickname": "The Janitor",
+      "description": "Worked here for nineteen years before the sentencing. Sees no reason to change routine.",
+      "stats": {
+        "strength": 6,
+        "intelligence": 6,
+        "stealth": 6,
+        "charisma": 5,
+        "luck": 5,
+        "speed": 5
+      },
+      "max_health": 10,
+      "traits": [
+        "knows_the_building",
+        "morning_person"
+      ],
+      "tags": [
+        "tech",
+        "stealth"
+      ],
+      "quips": {
+        "success": [
+          "Hank knew that door was like that.",
+          "Hank has opened this panel four thousand times."
+        ],
+        "failure": [
+          "Hank says they changed the locks in March.",
+          "Hank mutters about budget cuts."
+        ]
+      },
+      "visual": {
+        "body": "wide",
+        "skin": "#d1a172",
+        "hair": "receding",
+        "hair_color": "#6b6257",
+        "beard": "full",
+        "glasses": "none",
+        "hat": "cap",
+        "uniform": "#5d8aa8",
+        "eyes": "tired",
+        "brow": "normal",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "houdini_jr",
+      "name": "Houdini Jr.",
+      "nickname": "Legally Not Related",
+      "description": "Can escape anything except the consequences of his own marketing claims.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 6,
+        "stealth": 10,
+        "charisma": 5,
+        "luck": 5,
+        "speed": 7
+      },
+      "max_health": 8,
+      "traits": [
+        "greased_up",
+        "slippery_customer",
+        "brittle"
+      ],
+      "tags": [
+        "stealth",
+        "speed"
+      ],
+      "quips": {
+        "success": [
+          "Houdini Jr. is simply no longer where he was.",
+          "Houdini Jr. bows. There is no audience."
+        ],
+        "failure": [
+          "Houdini Jr. is stuck. Extremely stuck.",
+          "Houdini Jr. requests that nobody describe this later."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#e3bb92",
+        "hair": "long",
+        "hair_color": "#241a14",
+        "beard": "mustache",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "sharp",
+        "brow": "raised",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "mama_kowalski",
+      "name": "Mama Kowalski",
+      "nickname": "Ladle",
+      "description": "Ran the cafeteria for a decade. Runs it still. Nobody has told the warden.",
+      "stats": {
+        "strength": 7,
+        "intelligence": 5,
+        "stealth": 4,
+        "charisma": 8,
+        "luck": 4,
+        "speed": 3
+      },
+      "max_health": 12,
+      "traits": [
+        "iron_stomach",
+        "knows_a_guy"
+      ],
+      "tags": [
+        "social",
+        "strength"
+      ],
+      "quips": {
+        "success": [
+          "Mama Kowalski feeds the guard. The guard forgets the question.",
+          "Mama Kowalski has never been refused anything."
+        ],
+        "failure": [
+          "Mama Kowalski is offended. The whole wing knows.",
+          "Mama Kowalski throws something nutritious."
+        ]
+      },
+      "visual": {
+        "body": "wide",
+        "skin": "#e6bd96",
+        "hair": "bun",
+        "hair_color": "#7a5b3e",
+        "beard": "none",
+        "glasses": "none",
+        "hat": "chef",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "angry",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "dr_nibbles",
+      "name": "Dr. Nibbles",
+      "nickname": "Struck Off",
+      "description": "A veterinarian who treated humans for eight years without anyone noticing or complaining.",
+      "stats": {
+        "strength": 4,
+        "intelligence": 9,
+        "stealth": 5,
+        "charisma": 6,
+        "luck": 4,
+        "speed": 5
+      },
+      "max_health": 9,
+      "traits": [
+        "medically_trained",
+        "unreasonably_calm"
+      ],
+      "tags": [
+        "tech",
+        "medical"
+      ],
+      "quips": {
+        "success": [
+          "Dr. Nibbles pronounces it a clean procedure.",
+          "Dr. Nibbles does not explain where the equipment came from."
+        ],
+        "failure": [
+          "Dr. Nibbles says that has never happened before, which is a lie.",
+          "Dr. Nibbles asks everyone to stop looking at it."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#c78f5e",
+        "hair": "short",
+        "hair_color": "#4a3a2c",
+        "beard": "none",
+        "glasses": "round",
+        "hat": "none",
+        "eyes": "normal",
+        "uniform": "#e2761f",
+        "brow": "normal",
+        "extra": "bandage"
+      }
+    },
+    {
+      "id": "bug",
+      "name": "Bug",
+      "nickname": "Down There Guy",
+      "description": "Spent eleven years in the mines and considers daylight a passing fad.",
+      "stats": {
+        "strength": 7,
+        "intelligence": 5,
+        "stealth": 7,
+        "charisma": 3,
+        "luck": 5,
+        "speed": 5
+      },
+      "max_health": 11,
+      "traits": [
+        "born_in_a_tunnel",
+        "iron_stomach"
+      ],
+      "tags": [
+        "stealth",
+        "strength"
+      ],
+      "quips": {
+        "success": [
+          "Bug is already twelve feet into the floor.",
+          "Bug says the dirt here is good dirt."
+        ],
+        "failure": [
+          "Bug has found a pipe he was not looking for.",
+          "Bug is up to his waist in something."
+        ]
+      },
+      "visual": {
+        "body": "short",
+        "skin": "#a9753f",
+        "hair": "bald",
+        "hair_color": "#2b2119",
+        "beard": "full",
+        "glasses": "none",
+        "hat": "hardhat",
+        "uniform": "#e2761f",
+        "eyes": "beady",
+        "brow": "normal",
+        "extra": "scar"
+      }
+    },
+    {
+      "id": "sister_agatha",
+      "name": "Sister Agatha",
+      "nickname": "Formerly Devout",
+      "description": "Left the order under circumstances the order declines to discuss. Still blesses people. Aggressively.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 6,
+        "stealth": 5,
+        "charisma": 9,
+        "luck": 8,
+        "speed": 4
+      },
+      "max_health": 9,
+      "traits": [
+        "nobody_suspects_grandma",
+        "lucky_idiot",
+        "loudmouth"
+      ],
+      "tags": [
+        "social",
+        "luck"
+      ],
+      "quips": {
+        "success": [
+          "Sister Agatha calls it providence. It was not.",
+          "Sister Agatha forgives the guard for something he has not done yet."
+        ],
+        "failure": [
+          "Sister Agatha says a word she has not said since 1987.",
+          "Sister Agatha looks upward, disappointed in management."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#efd0ad",
+        "hair": "none",
+        "hair_color": "#2b2119",
+        "beard": "none",
+        "glasses": "round",
+        "hat": "bandana",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "raised",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "twitch",
+      "name": "Twitch",
+      "nickname": "Already Gone",
+      "description": "Holds the facility record for the yard sprint. Also for the number of times caught sprinting.",
+      "stats": {
+        "strength": 5,
+        "intelligence": 4,
+        "stealth": 6,
+        "charisma": 3,
+        "luck": 5,
+        "speed": 10
+      },
+      "max_health": 9,
+      "traits": [
+        "fast_hands",
+        "night_owl",
+        "walking_alarm"
+      ],
+      "tags": [
+        "speed",
+        "chaos"
+      ],
+      "quips": {
+        "success": [
+          "Twitch is across the room before the sentence ends.",
+          "Twitch has done it twice to be sure."
+        ],
+        "failure": [
+          "Twitch runs into the one thing in the room.",
+          "Twitch was so fast he arrived before the plan."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#d69a63",
+        "hair": "mohawk",
+        "hair_color": "#b5352f",
+        "beard": "none",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "wide",
+        "brow": "worried",
+        "extra": "freckles"
+      }
+    },
+    {
+      "id": "mordecai",
+      "name": "Old Man Mordecai",
+      "nickname": "The Lifer",
+      "description": "Has been here longer than the building's current paint. Knows which walls are lying.",
+      "stats": {
+        "strength": 3,
+        "intelligence": 7,
+        "stealth": 7,
+        "charisma": 6,
+        "luck": 10,
+        "speed": 2
+      },
+      "max_health": 7,
+      "traits": [
+        "knows_the_building",
+        "lucky_idiot",
+        "bad_knees"
+      ],
+      "tags": [
+        "luck",
+        "tech"
+      ],
+      "quips": {
+        "success": [
+          "Mordecai saw a man do that in 1974. It worked then too.",
+          "Mordecai does not celebrate. Mordecai has seen celebrations go wrong."
+        ],
+        "failure": [
+          "Mordecai says this is exactly what happened to Feeney.",
+          "Mordecai sits down. He will be a moment."
+        ]
+      },
+      "visual": {
+        "body": "thin",
+        "skin": "#d3b48f",
+        "hair": "long",
+        "hair_color": "#e3e6ea",
+        "beard": "long",
+        "glasses": "square",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "tired",
+        "brow": "normal",
+        "extra": "scar"
+      }
+    },
+    {
+      "id": "brenda_welder",
+      "name": "Brenda",
+      "nickname": "Sparks",
+      "description": "Certified welder, uncertified demolition enthusiast. Brought the workshop up to code by removing it.",
+      "stats": {
+        "strength": 8,
+        "intelligence": 8,
+        "stealth": 3,
+        "charisma": 4,
+        "luck": 4,
+        "speed": 5
+      },
+      "max_health": 11,
+      "traits": [
+        "tattooed_map",
+        "strong_as_hell",
+        "walking_alarm"
+      ],
+      "tags": [
+        "strength",
+        "tech"
+      ],
+      "quips": {
+        "success": [
+          "Brenda steps back to admire the hole.",
+          "Brenda says that is load-bearing now, actually."
+        ],
+        "failure": [
+          "Brenda has welded two things that should never have met.",
+          "Brenda set off something that was not a fire alarm."
+        ]
+      },
+      "visual": {
+        "body": "wide",
+        "skin": "#c98b57",
+        "hair": "braids",
+        "hair_color": "#2f2019",
+        "beard": "none",
+        "glasses": "none",
+        "hat": "visor",
+        "uniform": "#e2761f",
+        "eyes": "sharp",
+        "brow": "normal",
+        "extra": "scar"
+      }
+    },
+    {
+      "id": "rico_two_phones",
+      "name": "Rico",
+      "nickname": "Two Phones",
+      "description": "Has two phones. Has always had two phones. Nobody has located either phone.",
+      "stats": {
+        "strength": 4,
+        "intelligence": 8,
+        "stealth": 6,
+        "charisma": 8,
+        "luck": 4,
+        "speed": 5
+      },
+      "max_health": 10,
+      "traits": [
+        "keyboard_warrior",
+        "knows_a_guy",
+        "overconfident"
+      ],
+      "tags": [
+        "tech",
+        "social"
+      ],
+      "quips": {
+        "success": [
+          "Rico takes a call in the middle of it.",
+          "Rico says he'll have someone handle the paperwork."
+        ],
+        "failure": [
+          "Rico's contact does not pick up.",
+          "Rico has lost a phone. He still has two phones."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#a26c42",
+        "hair": "short",
+        "hair_color": "#1a1512",
+        "beard": "goatee",
+        "glasses": "shades",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "raised",
+        "extra": "earring"
+      }
+    },
+    {
+      "id": "norm",
+      "name": "Norm",
+      "nickname": "Statistically Average",
+      "description": "Perfectly, aggressively median in every measurable way. It is somehow his most alarming quality.",
+      "stats": {
+        "strength": 5,
+        "intelligence": 5,
+        "stealth": 5,
+        "charisma": 5,
+        "luck": 8,
+        "speed": 5
+      },
+      "max_health": 10,
+      "traits": [
+        "lucky_idiot",
+        "slippery_customer",
+        "morning_person"
+      ],
+      "tags": [
+        "luck"
+      ],
+      "quips": {
+        "success": [
+          "Norm does an adequate job and it is somehow enough.",
+          "Norm did not stand out. That was the whole plan."
+        ],
+        "failure": [
+          "Norm fails in a way nobody will remember.",
+          "Norm apologises to the correct number of people."
+        ]
+      },
+      "visual": {
+        "body": "normal",
+        "skin": "#dbab7e",
+        "hair": "short",
+        "hair_color": "#6a4f36",
+        "beard": "none",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "normal",
+        "brow": "normal",
+        "extra": "none"
+      }
+    },
+    {
+      "id": "gutsy_greg",
+      "name": "Gutsy Greg",
+      "nickname": "The Disposal",
+      "description": "Will eat it. Whatever it is. This has been useful exactly twice and catastrophic eleven times.",
+      "stats": {
+        "strength": 8,
+        "intelligence": 3,
+        "stealth": 4,
+        "charisma": 5,
+        "luck": 7,
+        "speed": 5
+      },
+      "max_health": 13,
+      "traits": [
+        "eats_anything",
+        "iron_stomach",
+        "butterfingers"
+      ],
+      "tags": [
+        "chaos",
+        "strength"
+      ],
+      "quips": {
+        "success": [
+          "Greg swallowed the evidence. All of it.",
+          "Greg says it was fine, actually."
+        ],
+        "failure": [
+          "Greg has eaten something structural.",
+          "Greg is having a moment and needs the room."
+        ]
+      },
+      "visual": {
+        "body": "huge",
+        "skin": "#e9bb8c",
+        "hair": "buzz",
+        "hair_color": "#9c7b4e",
+        "beard": "stubble",
+        "glasses": "none",
+        "hat": "none",
+        "uniform": "#e2761f",
+        "eyes": "wide",
+        "brow": "worried",
+        "extra": "tooth_gap"
+      }
+    }
+  ]
+}

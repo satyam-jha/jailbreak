@@ -1,0 +1,13 @@
+{
+  "_readme": "Character status effects. 'stat_mods' are applied to that character's effective stats during every check. 'duration' counts rooms; -1 means it lasts until healed or cleared. A character at 0 health becomes 'unconscious' - they are unavailable for checks but the run continues.",
+
+  "statuses": [
+    { "id": "healthy",     "name": "Healthy",     "color": "#5fb878", "icon": "heart",  "duration": -1, "stat_mods": {}, "blurb": "Unremarkable. Ideal." },
+    { "id": "injured",     "name": "Injured",     "color": "#d9534f", "icon": "cross",  "duration": -1, "stat_mods": { "strength": -2, "speed": -1 }, "blurb": "Walking it off. Badly." },
+    { "id": "scared",      "name": "Scared",      "color": "#9b8ad4", "icon": "eye",    "duration": 3,  "stat_mods": { "charisma": -2, "stealth": 1 }, "blurb": "Quieter than usual, for the worst reason." },
+    { "id": "angry",       "name": "Angry",       "color": "#e07b39", "icon": "flame",  "duration": 3,  "stat_mods": { "strength": 2, "stealth": -2, "charisma": -1 }, "blurb": "Productive, in one narrow sense." },
+    { "id": "exhausted",   "name": "Exhausted",   "color": "#7f8c9b", "icon": "moon",   "duration": 2,  "stat_mods": { "speed": -2, "intelligence": -1 }, "blurb": "Present, technically." },
+    { "id": "suspicious",  "name": "Suspected",   "color": "#d8c44a", "icon": "badge",  "duration": 4,  "stat_mods": { "stealth": -2, "charisma": -1 }, "blurb": "On a list. A short one." },
+    { "id": "unconscious", "name": "Unconscious", "color": "#4a4f5e", "icon": "skull",  "duration": -1, "stat_mods": {}, "blurb": "Unavailable for selection. Still technically on the crew." }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "_readme": "The final escape. Each route runs three sequential checks against different stats; failing a step damages the crew and raises Heat but does not immediately end the run - you need to pass at least 'required_passes' of the three. 'heat_modifier' is added to every step's difficulty as Heat rises, so a loud run makes every route harder. Add a route by copying a block.",
+  "routes": [
+    {
+      "id": "tunnel",
+      "name": "The Tunnel",
+      "tagline": "Down, along, and up. Ninety metres of other people's plumbing.",
+      "icon": "pipe",
+      "color": "#6b7f5c",
+      "best_stats": [
+        "strength",
+        "intelligence",
+        "stealth"
+      ],
+      "required_passes": 2,
+      "heat_scaling": 0.26,
+      "steps": [
+        {
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning",
+            "tunnel"
+          ],
+          "difficulty": 2,
+          "title": "Find the breach point",
+          "success": "The soft section is exactly where the blueprint promised. The first block comes away clean.",
+          "failure": "You dig in the wrong place for forty minutes and hit a footing that was poured in 1961 and means it."
+        },
+        {
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "tunnel"
+          ],
+          "difficulty": 3,
+          "title": "Dig through",
+          "success": "Three hours of filthy, silent, magnificent work. The tunnel goes.",
+          "failure": "A partial collapse. Everybody is fine. Everybody is also under a certain amount of prison."
+        },
+        {
+          "stat": "stealth",
+          "tags": [
+            "stealth",
+            "tunnel"
+          ],
+          "difficulty": 2,
+          "title": "Cross the last stretch",
+          "success": "Out into a drainage ditch, in the dark, in a field. Nobody says anything for a full minute.",
+          "failure": "You come up inside the perimeter lighting, which is the one place the tunnel was supposed to avoid."
+        }
+      ],
+      "victory": "You surface in a wet field four hundred metres beyond the wall, covered in something nobody will discuss, and walk away from the worst-run institution in the county.",
+      "defeat": "The tunnel was good. The tunnel was genuinely good. It simply came up eleven metres short, inside the lit strip, in front of a tower."
+    },
+    {
+      "id": "disguise",
+      "name": "The Disguise",
+      "tagline": "Walk out of the front. Confidently. Wearing somebody else's trousers.",
+      "icon": "badge",
+      "color": "#5f7ba8",
+      "best_stats": [
+        "charisma",
+        "intelligence",
+        "stealth"
+      ],
+      "required_passes": 2,
+      "heat_scaling": 0.34,
+      "steps": [
+        {
+          "stat": "intelligence",
+          "tags": [
+            "tech",
+            "planning",
+            "deception"
+          ],
+          "difficulty": 2,
+          "title": "Produce the paperwork",
+          "success": "A transfer order, a vehicle authorisation, and a lanyard. All of it is fake. None of it looks it.",
+          "failure": "The form is right. The reference number is not, and the reference number is the only part anybody ever checks."
+        },
+        {
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "deception"
+          ],
+          "difficulty": 3,
+          "title": "Clear the checkpoint",
+          "success": "You complain about the paperwork before he can. He agrees with you enthusiastically and waves you through.",
+          "failure": "He asks one follow-up question. Just one. It is a very good question."
+        },
+        {
+          "stat": "stealth",
+          "tags": [
+            "stealth"
+          ],
+          "difficulty": 2,
+          "title": "Reach the vehicle gate",
+          "success": "Four hundred metres of open tarmac, walked at exactly the speed of somebody who is allowed to be there.",
+          "failure": "Somebody breaks into a jog. Nobody on staff has ever jogged here. It is noticed instantly."
+        }
+      ],
+      "victory": "You drive out of the staff gate in a van you are not authorised to operate, waving at a man who waves back, and nobody realises for six hours.",
+      "defeat": "The uniforms were perfect. The documents were perfect. Somebody said 'cheers, boss' to the actual boss."
+    },
+    {
+      "id": "riot",
+      "name": "The Riot",
+      "tagline": "Make the building somebody else's problem, then leave during it.",
+      "icon": "flame",
+      "color": "#a8553f",
+      "best_stats": [
+        "strength",
+        "charisma",
+        "luck"
+      ],
+      "required_passes": 2,
+      "heat_scaling": -0.16,
+      "steps": [
+        {
+          "stat": "charisma",
+          "tags": [
+            "social",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "title": "Light the fuse",
+          "success": "Four hundred men decide, more or less simultaneously, that they have had enough of the gravy.",
+          "failure": "You give the speech. It is a good speech. Nobody moves. It is the longest eleven seconds of your life."
+        },
+        {
+          "stat": "strength",
+          "tags": [
+            "physical",
+            "chaos"
+          ],
+          "difficulty": 3,
+          "title": "Hold the corridor",
+          "success": "Two doors, one bench, and a wall of your largest people. Nothing gets past.",
+          "failure": "The corridor is held. Briefly. Then it is extremely not held."
+        },
+        {
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "title": "Slip out in the confusion",
+          "success": "In the smoke and the shouting nobody counts anybody. You walk out of a fire door that was propped for ventilation.",
+          "failure": "In the smoke and the shouting, somebody does count. Somebody always counts."
+        }
+      ],
+      "victory": "You leave through a fire exit during the largest disturbance in the facility's history, which is still, technically, being investigated.",
+      "defeat": "The riot was a triumph. It was such a triumph that every exit in the building was sealed within ninety seconds, including yours."
+    },
+    {
+      "id": "stupid_plan",
+      "name": "The Stupid Plan",
+      "tagline": "Nobody can explain it. Nobody has agreed to it. It is happening.",
+      "icon": "star",
+      "color": "#b08a3f",
+      "best_stats": [
+        "luck",
+        "speed",
+        "charisma"
+      ],
+      "required_passes": 2,
+      "heat_scaling": 0.0,
+      "steps": [
+        {
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "chaos"
+          ],
+          "difficulty": 1,
+          "title": "Commit to it",
+          "success": "Against every reasonable expectation, the first part works. Nobody is more surprised than the crew.",
+          "failure": "The first part does not work. The first part was never going to work. That was always the risk with the first part."
+        },
+        {
+          "stat": "speed",
+          "tags": [
+            "speed",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "title": "Go before anybody thinks about it",
+          "success": "Momentum carries you through a set of circumstances that would not survive a second's thought.",
+          "failure": "Somebody thinks about it. Out loud. The whole thing collapses under mild scrutiny."
+        },
+        {
+          "stat": "luck",
+          "tags": [
+            "luck",
+            "chaos"
+          ],
+          "difficulty": 2,
+          "title": "The bit nobody planned",
+          "success": "A laundry van, a propped gate, and a delivery driver who has decided he does not get paid enough to notice things.",
+          "failure": "The bit nobody planned turns out to have been the bit that needed planning."
+        }
+      ],
+      "victory": "You escape inside a laundry cart, on a van, driven by a man who will later tell police he assumed it was a training exercise. No part of this should have worked. All of it did.",
+      "defeat": "It was a stupid plan. Everybody said so at the time. It has been recorded, in the incident log, as 'the stupid plan', by a guard who was laughing."
+    }
+  ]
+}
